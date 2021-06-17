@@ -7,6 +7,12 @@ const { User } = require('../../db/models');
 const { restoreUser } = require('../../utils/auth.js');
 const { requireAuth } = require('../../utils/auth.js');
 
+const sessionRouter = require('./session');
+const usersRouter = require('./users');
+
+router.use('/session', sessionRouter);
+router.use('/users', usersRouter);
+
 // -----TEST ROUTES FOR MIDDLEWARE-----
 // // GET /api/set-token-cookie
 // router.get('/set-token-cookie', asyncHandler(async (req, res) => {
