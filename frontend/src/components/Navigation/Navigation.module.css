@@ -1,0 +1,83 @@
+/* Nav bar */
+
+.wrapper {
+  background-color:rgb(100, 200, 200);
+  display: flex;
+  justify-content: space-between;
+}
+
+.homeBtn {
+
+}
+
+.sessionLinksContainer {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+
+.sessionLinks {
+  margin: 0px 20px;
+}
+
+.navlink__active {
+  text-decoration: none;
+  background-color:;
+}
+
+.navlink {
+  text-decoration: none;
+  width: 100px;
+  color:indigo ;
+}
+
+.navlink:hover {
+  color: darkviolet;
+  text-decoration: none;
+}
+
+
+/* Profile menu */
+
+.dropdown {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.dropdownItems {
+  background-color:rgb(100, 200, 200);
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.li {
+  color: blue;
+  list-style-type: none;
+}
+
+.button {
+  color: white;
+  margin: 10px;
+  background-image: -webkit-gradient(linear,left top,right bottom,from(#008a8a),to(#00b4b4));
+  border: 1px solid rgb(0, 180, 180);
+  border-radius: 3px;
+  width: 170px;
+  padding: 5px;
+  box-shadow: 0px 1px 2px 1px darkgray;
+  transition: box-shadow 0.3s;
+  animation: transitionIn 1.5s;
+
+}
+
+.button:hover {
+  background-image: none;
+  background-color: #008a8a;
+}
+
+.button:active {
+  color: rgb(100, 200, 200);
+  box-shadow: none;
+}

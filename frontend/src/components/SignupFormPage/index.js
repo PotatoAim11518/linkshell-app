@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import '../LoginFormPage/LoginForm.css'
+import styles from './SignupForm.module.css'
 
 import * as sessionActions from '../../store/session';
 
@@ -38,6 +38,7 @@ const SignupFormPage = () => {
         {/* Username */}
         <div>
           <input
+            className={styles.input}
             type='text'
             value={username}
             onChange={(e) => setUsername(e.target.value)}
@@ -50,6 +51,7 @@ const SignupFormPage = () => {
         {/* Email */}
         <div>
           <input
+            className={styles.input}
             type='email'
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -62,18 +64,20 @@ const SignupFormPage = () => {
         {/* Password */}
         <div>
           <input
+            className={styles.input}
             type='password'
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder='Enter Password'
             required
-          />
+            />
         </div>
       </label>
       <label>
         {/* Confirm Password */}
         <div>
           <input
+            className={styles.input}
             type='password'
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
@@ -83,7 +87,11 @@ const SignupFormPage = () => {
         </div>
       </label>
       <div>
-        <button type='submit'>Sign Up</button>
+        <button
+          className={styles.button}
+          type='submit'
+        >Sign Up
+        </button>
       </div>
     </form>
   )

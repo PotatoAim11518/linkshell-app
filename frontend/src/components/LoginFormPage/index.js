@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import './LoginForm.css'
+import styles from './LoginForm.module.css'
 
 import * as sessionActions from '../../store/session';
 
@@ -35,6 +35,7 @@ const LoginFormPage = () => {
         {/* Username or Email */}
         <div>
           <input
+            className={styles.input}
             type='text'
             value={credential}
             onChange={(e) => setCredential(e.target.value)}
@@ -47,16 +48,18 @@ const LoginFormPage = () => {
         {/* Password */}
         <div>
           <input
+            className={styles.input}
             type='password'
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder='Enter Password'
             required
-          />
+            />
         </div>
       </label>
       <div>
-        <button type='submit'>Log In</button>
+        <button className={styles.button} type='submit'>Log In</button>
+
       </div>
     </form>
   )
