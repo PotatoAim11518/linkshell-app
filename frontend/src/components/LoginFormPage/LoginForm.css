@@ -28,9 +28,7 @@ button {
 
 }
 
-button:hover {
+button:active {
   color: rgb(4, 70, 70);
-  /* background-color: rgb(157, 255, 209); */
   box-shadow: none;
-  transition: box-shadow 0.1s;
 }
