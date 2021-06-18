@@ -6,10 +6,6 @@
   justify-content: space-between;
 }
 
-.homeBtn {
-
-}
-
 .sessionLinksContainer {
   display: flex;
   flex-direction: row-reverse;
@@ -22,7 +18,6 @@
 
 .navlink__active {
   text-decoration: none;
-  background-color:;
 }
 
 .navlink {
