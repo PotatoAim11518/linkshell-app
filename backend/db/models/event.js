@@ -15,6 +15,9 @@ module.exports = (sequelize, DataTypes) => {
     capacity: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      validate: {
+        min: 0
+      }
     },
     hostId: {
       type: DataTypes.INTEGER,

@@ -9,21 +9,27 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       name: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       date: {
+        allowNull: false,
         type: Sequelize.DATE
       },
       capacity: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       hostId: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       locationId: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       groupId: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       createdAt: {
