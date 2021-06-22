@@ -1,7 +1,6 @@
 // frontend/src/components/GroupsList/index.js
 import React, { useEffect, }from "react";
 import { useSelector, useDispatch } from "react-redux";
-// import * as sessionActions from '../../store/session';
 import { getGroups } from '../../store/groups';
 import styles from './GroupsList.module.css';
 import GroupCard from "../GroupCard";
