@@ -25,20 +25,23 @@ export const getUserGroups = () => async (dispatch) => {
   dispatch(setUserGroups(userGroups));
 }
 
-export const createGroup = (data) => async dispatch => {
-  const response = await csrfFetch('/api/groups', {
+export const joinUserGroup = (groupId, userId) => async dispatch => {
+  const response = await csrfFetch(`/api/groups/${groupId}/user/${userId}/join`, {
     method: "POST",
-    body: JSON.stringify(data)
+    body: JSON.stringify({
+      userId,
+      groupId
+    })
   });
   if (response.ok) {
-    const newGroup = await response.json();
-    dispatch(add(newGroup));
-    return newGroup;
+    const newUserGroup = await response.json();
+    dispatch(add(newUserGroup));
+    return newUserGroup;
   }
 }
 
-export const deleteGroup = (groupId) => async dispatch => {
-  const response = await csrfFetch(`/api/groups/${groupId}`, {
+export const leaveUserGroup = (groupId, userId) => async dispatch => {
+  const response = await csrfFetch(`/api/groups/${groupId}/user/${userId}/leave`, {
     method: "DELETE"
   });
 

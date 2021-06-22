@@ -47,7 +47,7 @@ router.post(
   })
 );
 
-// POST /   ---> Add a new user group
+// POST /   ---> Join a new user group
 router.post(
   "/:groupId/user/:userId/join",
   requireAuth,
@@ -144,7 +144,7 @@ router.get(
   );
 
   // DELETE /   ---> Remove a user group
-  router.post(
+  router.delete(
     "/:groupId/user/:userId/leave",
     requireAuth,
     asyncHandler(async (req, res, next) => {

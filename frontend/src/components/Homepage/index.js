@@ -1,6 +1,10 @@
 // frontend/src/components/Homepage/index.js
 import React from "react";
 import { useSelector } from "react-redux";
+import GroupDiscovery from './GroupDiscovery'
+import EventDiscovery from './EventDiscovery'
+import UpcomingEvents from './UpcomingEvents'
+import styles from './Homepage.module.css';
 
 const Homepage = ({ isLoaded }) => {
   const sessionUser = useSelector((state) => state.session.user)
@@ -9,9 +13,11 @@ const Homepage = ({ isLoaded }) => {
   } else {
     return (
       <>
-        <h2>Your Next Event</h2>
-        <h2>Scheduled events from your groups</h2>
-        <h2>Attend an event starting soon</h2>
+        <div className={styles.pageContainer}>
+          <EventDiscovery />
+          <GroupDiscovery />
+          <UpcomingEvents />
+        </div>
       </>
     );
   }
