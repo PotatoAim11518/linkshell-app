@@ -5,7 +5,7 @@ const { check } = require('express-validator');
 const asyncHandler = require('express-async-handler');
 
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { Group } = require('../../db/models');
+const { Group, Type, User } = require('../../db/models');
 const { handleValidationErrors } = require('../../utils/validation')
 
 
@@ -14,6 +14,7 @@ router.get(
   '/',
   asyncHandler(async (_req, res, next) => {
     const groups = await Group.findAll();
+    // console.log(groups)
     res.json(groups)
   })
 )
@@ -34,7 +35,7 @@ router.get(
     '/',
     requireAuth,
     asyncHandler(async (req, res, next) => {
-      const { name, about, typeId, ownerId } = req.body;
+      // const { name, about, typeId, ownerId } = req.body;
   })
 )
 

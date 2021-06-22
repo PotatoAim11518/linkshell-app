@@ -19,11 +19,13 @@ module.exports = {
       },
       typeId: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {model: "Types"}
       },
       ownerId: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {model: "Users"}
       },
       createdAt: {
         allowNull: false,

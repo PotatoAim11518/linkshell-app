@@ -33,7 +33,6 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, {});
   Event.associate = function(models) {
-    Event.belongsTo(models.Location, {foreignKey: 'typeId'})
   };
   return Event;
 };
