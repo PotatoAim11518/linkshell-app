@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 const Homepage = ({ isLoaded }) => {
   const sessionUser = useSelector((state) => state.session.user)
   if (!sessionUser) {
-    return <h1>Not Logged In User Splash</h1>;
+    return <h1>Not Logged In User Page</h1>;
   } else {
     return (
       <>

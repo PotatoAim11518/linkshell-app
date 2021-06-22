@@ -1,7 +1,7 @@
 // frontend/src/App.js
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, NavLink } from 'react-router-dom';
 import LoginFormPage from '../src/components/LoginFormPage';
 import SignupFormPage from '../src/components/SignupFormPage';
 import Navigation from '../src/components/Navigation';
@@ -33,7 +33,10 @@ function App() {
           </Route>
           <Route path="/discover">
             <h1>Discover Events and Groups</h1>
-            <GroupsList />
+            <nav>
+              <NavLink to='/discover/groups'>Groups</NavLink>
+              <NavLink to='/discover/events'>Events</NavLink>
+            </nav>
           </Route>
         </Switch>
       )}
