@@ -3,41 +3,55 @@
 }
 
 .input {
-  padding: 10px;
+  min-width: 200px;
+  padding: 14px;
   border: none;
   border-bottom: 1px solid rgb(190, 190, 190);
+  background-color: transparent;
+  color: white;
   outline: none;
   transition: border-bottom 0.3s;
   animation: transitionIn 1s;
 }
 
 .input:focus {
-  border-bottom: 1px solid rgb(0, 175, 206);
-  transition: border-bottom 0.3s;
+  border-bottom: 1px solid red;
+}
+
+input::placeholder {
+  color: gray;
+}
+
+input.custom {
+  caret-color: red;
 }
 
 .button {
-  color: white;
-  margin: 10px;
-  background-image: -webkit-gradient(linear,left top,right bottom,from(#008a8a),to(#00b4b4));
-  border: 1px solid rgb(0, 180, 180);
-  border-radius: 3px;
-  width: 170px;
-  padding: 5px;
-  box-shadow: 0px 1px 2px 1px darkgray;
+  color: #fd2828;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin: 20px 0px;
+  padding: 12px 0px;
+  min-width: 228px;
+  background-color: transparent;
+  border: 2px solid #fd2828;
+  border-radius: 5px;
   transition: box-shadow 0.3s;
   animation: transitionIn 1.5s;
+}
 
+.profile-btn {
+  position: fixed;
+  left: 20px;
 }
 
 .button:hover {
-  background-image: none;
-  background-color: #008a8a;
+  color: white;
+  background-color: #fd2828;
 }
 
 .button:active {
-  color: rgb(100, 200, 200);
-  box-shadow: none;
+  box-shadow: -1px -1px 2px 1px rgb(10, 10, 10);
 }
 
 @keyframes transitionIn {

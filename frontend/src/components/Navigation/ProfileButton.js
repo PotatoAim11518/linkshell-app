@@ -33,8 +33,7 @@ const ProfileButton = ({user}) => {
 
   return (
     <>
-      <button className={styles.profileButton} onClick={openMenu}>
-        <i className="fas fa-ghost" style={{color: 'blue'}}/>
+      <button className={styles.profileButton, "profile-btn"} onClick={openMenu}>        <i className="fas fa-ghost" style={{color: 'blue'}}/>
       </button>
       {showMenu && (
         <ul className={styles.dropdownItems}>
