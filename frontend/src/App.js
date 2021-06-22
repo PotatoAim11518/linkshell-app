@@ -31,6 +31,10 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
+          <Route path="/discover">
+            <h1>Discover Events and Groups</h1>
+            <GroupsList />
+          </Route>
         </Switch>
       )}
     </>
