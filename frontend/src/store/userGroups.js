@@ -14,9 +14,9 @@ const add = (userGroup) => ({
   userGroup
 })
 
-const remove = (userGroup) => ({
+const remove = (userGroupId) => ({
   type: REMOVE_USERGROUP,
-  userGroup
+  userGroupId
 })
 
 export const getUserGroups = () => async (dispatch) => {
@@ -61,11 +61,11 @@ const userGroupsReducer = (state=initialState, action) => {
         ...state,
         ...allUserGroups,
       };
-    case ADD_GROUP:
-      return {...state, [action.group.id]: action.group}
-    case REMOVE_GROUP:
+    case ADD_USERGROUP:
+      return {...state, [action.userGroup.id]: action.userGroup}
+    case REMOVE_USERGROUP:
       const newState = {...state}
-      delete newState[action.groupId]
+      delete newState[action.userGroupId]
       return newState;
     default:
       return state;

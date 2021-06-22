@@ -93,7 +93,7 @@ router.get(
 // GET /user/:id ---> Get a user's groups
 router.get(
   "/user/:id",
-  asyncHandler(async (_req, res, next) => {
+  asyncHandler(async (req, res, next) => {
     const { id } = req.params;
     const userGroups = await UserGroup.findAll({
       where: {

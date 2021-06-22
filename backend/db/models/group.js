@@ -28,6 +28,8 @@ module.exports = (sequelize, DataTypes) => {
   Group.associate = function(models) {
     Group.belongsTo(models.User, {foreignKey: 'ownerId'})
     Group.belongsTo(models.Type, {foreignKey: 'typeId'})
+    Group.hasMany(models.UserGroup, {foreignKey: 'groupId'})
+    Group.hasMany(models.Event, {foreignKey: 'groupId'})
   };
   return Group;
 };

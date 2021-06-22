@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, {});
   Type.associate = function(models) {
-    // associations can be defined here
+    Type.hasMany(models.Group, {foreignKey: 'typeId'})
   };
   return Type;
 };
