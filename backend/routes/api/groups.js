@@ -113,11 +113,15 @@ router.get(
     "/:id",
     validateGroup,
     requireAuth,
-  asyncHandler(async (req, res, next) => {
-    const editGroup = await Group.build(req.body);
-    await editGroup.save();
-    return res.json(editGroup);
-  })
+    asyncHandler(async (req, res) => {
+      const {id} = req.body;
+      const editGroup = await Group.update(req.body, {
+        where: {
+          id
+        }
+      });
+      return res.json(editGroup);
+    })
   );
 
   // DELETE

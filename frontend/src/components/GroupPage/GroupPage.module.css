@@ -1,9 +1,13 @@
-h2, h3 {
+.groupName, .groupOwner {
   color: white;
   position: relative;
   text-align: left;
   left: 300px;
   animation: wait 1.5s;
+}
+
+.groupOwner {
+  animation: wait 2.3s;
 }
 
 .pageContainer {
@@ -59,6 +63,24 @@ h2, h3 {
 .navLinkActive {
   font-weight: 200;
   border-bottom: 2px solid red;
+}
+
+
+.aboutHeader {
+  color: white;
+  position: relative;
+  text-align: left;
+  left: 80px;
+  animation: wait 1.5s;
+}
+
+.aboutText {
+  color: white;
+  position: relative;
+  font-weight: 100;
+  text-align: left;
+  left: 80px;
+  animation: wait 2s;
 }
 
 @keyframes wait {
