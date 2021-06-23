@@ -3,7 +3,7 @@ h2, h3 {
   position: relative;
   text-align: left;
   left: 300px;
-  animation: wait 2s;
+  animation: wait 1.5s;
 }
 
 .pageContainer {
@@ -19,7 +19,7 @@ h2, h3 {
   position: relative;
   left: 320px;
   top: -18px;
-  animation: divider 2s ease-in;
+  animation: divider 1.5s ease-in;
 }
 
 .image {
@@ -37,7 +37,7 @@ h2, h3 {
   background-color: #101010;
   top: 0px;
   z-index: 150;
-  animation: wait 2s;
+  animation: wait 1.5s;
 }
 
 .navLink {

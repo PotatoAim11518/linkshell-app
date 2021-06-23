@@ -3,6 +3,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styles from "./Homepage.module.css";
+import SeeMoreEvents from "./SeeMoreEvents";
 
 const UpcomingEvents = ({ isLoaded }) => {
   const sessionUser = useSelector((state) => state.session.user);
@@ -19,10 +20,7 @@ const UpcomingEvents = ({ isLoaded }) => {
         <div className={styles.image}>
           <p>--Placeholder for events happening soon--</p>
         </div>
-        <div className={`${styles.explore} ${styles.buttonContainer}`}>
-          <h4>See more events starting soon</h4>
-          <Link className={styles.button} to="/discover/events">See More</Link>
-        </div>
+        <SeeMoreEvents />
       </div>
     </>
   );

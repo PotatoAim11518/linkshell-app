@@ -1,18 +1,22 @@
 // frontend/src/components/GroupPage/index.js
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useParams, Link, NavLink, Switch, Route } from "react-router-dom";
 import { getGroups, updateGroup, getGroup } from '../../store/groups';
 import styles from './GroupPage.module.css';
-import { useParams, NavLink, Switch, Route } from "react-router-dom";
+import About from "../GroupPageAbout";
 
 const GroupPage = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const group = useSelector((state) => state.groups[id]);
+  const user = useSelector((state) => state.session.user) || null;
 
   useEffect(()=>{
     dispatch(getGroup(id))
   },[dispatch, id])
+
+  const ownerName = group.User.username;
 
   return (
     <>
@@ -26,20 +30,34 @@ const GroupPage = () => {
       </div>
       <div className={styles.groupContent}>
         <nav className={styles.nav}>
-          <NavLink className={styles.navLink} activeClassName={styles.navLinkActive} exact to={`/groups/${id}`}>About</NavLink>
-          <NavLink className={styles.navLink} activeClassName={styles.navLinkActive} to={`/groups/${id}/events`}>Events</NavLink>
-          <NavLink className={styles.navLink} activeClassName={styles.navLinkActive} to={`/groups/${id}/members`}>Members</NavLink>
+          <NavLink className={styles.navLink} activeClassName={styles.navLinkActive}
+            exact to={`/groups/${id}`}>About
+          </NavLink>
+          <NavLink className={styles.navLink} activeClassName={styles.navLinkActive}
+            to={`/groups/${id}/events`}>Events
+          </NavLink>
+          <NavLink className={styles.navLink} activeClassName={styles.navLinkActive}
+            to={`/groups/${id}/members`}>Members
+          </NavLink>
+          {(user?.username === ownerName) && (
+            <NavLink className={`${styles.editBtn} ${styles.navLink}`} activeClassName={styles.navLinkActive}
+            to={`/groups/${id}/edit`}>Edit Group
+            </NavLink>
+          )}
         </nav>
         <div className={styles.info}>
           <Switch>
             <Route exact path={`/groups/${id}`}>
-              <p>About Section</p>
+              <About />
             </Route>
-            <Route exact path={`/groups/${id}/events`}>
+            <Route path={`/groups/${id}/events`}>
               <p>Events Section</p>
             </Route>
             <Route path={`/groups/${id}/members`}>
               <p>Members Section</p>
+            </Route>
+            <Route path={`/groups/${id}/edit`}>
+              <p>Edit Group Form</p>
             </Route>
           </Switch>
         </div>

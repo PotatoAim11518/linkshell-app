@@ -1,3 +1,10 @@
+.loggedOutPage {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
 .pageContainer {
   display: flex;
   flex-direction: column;
