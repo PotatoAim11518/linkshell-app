@@ -27,7 +27,7 @@
   margin-top: 20px;
   padding: 10px;
   padding-left: 40px;
-  opacity: 90%;
+  opacity: 0.9;
   box-shadow: -2px 2px 6px 1px #111;
   color: white;
   background-color: #1e1f23;
@@ -64,11 +64,11 @@
 
 @keyframes transitionIn {
   from {
-      opacity: 0%;
+      opacity: 0.0;
       transform: translateY(10px);
     }
     to {
-      opacity: 100%;
+      opacity: 1.0;
   }
 }
 
