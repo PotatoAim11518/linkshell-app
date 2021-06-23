@@ -1,11 +1,12 @@
 // frontend/src/components/GroupCard/index.js
 import React from "react";
 import styles from './GroupCard.module.css';
+import { Link } from "react-router-dom";
 
 const GroupCard = ({group}) => {
   const { id, name, about, Type, User } = group;
   return (
-    <a className={styles.a} href={`/groups/${id}`}>
+    <Link className={styles.link} to={`/groups/${id}`}>
       <div className={styles.groupCard}>
         <div className={styles.image}>
           Image Placeholder
@@ -25,7 +26,7 @@ const GroupCard = ({group}) => {
           <p className={styles.owner}>Owner: {User.username}</p>
         </div>
       </div>
-    </a>
+    </Link>
   )
 }
 

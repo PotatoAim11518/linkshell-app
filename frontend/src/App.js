@@ -7,6 +7,8 @@ import SignupFormPage from '../src/components/SignupFormPage';
 import Navigation from '../src/components/Navigation';
 import GroupsList from '../src/components/GroupsList';
 import Homepage from '../src/components/Homepage';
+import DiscoverNav from '../src/components/DiscoverNav';
+import GroupPage from '../src/components/GroupPage';
 import { restoreUser } from './store/session';
 
 function App() {
@@ -31,13 +33,16 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-          <Route path="/discover">
-            <h1>Discover Events and Groups</h1>
-            <nav>
-              <NavLink to='/discover/groups'>Groups</NavLink> |
-              <NavLink to='/discover/events'>Events</NavLink>
-            </nav>
+          <Route path="/groups/:id">
+            <GroupPage />
+          </Route>
+          <Route path='/discover/groups'>
+            <DiscoverNav/>
             <GroupsList />
+          </Route>
+          <Route path='/discover/events'>
+            <DiscoverNav/>
+            <h2>Events go here</h2>
           </Route>
         </Switch>
       )}

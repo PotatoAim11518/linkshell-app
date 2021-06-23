@@ -28,6 +28,12 @@ export const getGroups = () => async (dispatch) => {
   dispatch(setGroups(groups));
 }
 
+export const getGroup = (groupId) => async (dispatch) => {
+  const response = await csrfFetch(`/api/groups/${groupId}`);
+  const group = await response.json();
+  dispatch(add(group));
+}
+
 export const createGroup = (data) => async dispatch => {
   const response = await csrfFetch('/api/groups', {
     method: "POST",

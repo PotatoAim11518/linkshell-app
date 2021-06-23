@@ -41,6 +41,7 @@ input.custom {
 }
 
 .profile-btn {
+  z-index: 200;
   position: fixed;
   left: 20px;
 }
