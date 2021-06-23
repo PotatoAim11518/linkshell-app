@@ -6,10 +6,11 @@
 }
 
 .section {
-  width: auto;
+  min-width: 800px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  animation: transitionIn 1s;
 }
 
 .buttonContainer {
@@ -30,6 +31,7 @@
 
 .sectionTitle {
   color: white;
+  animation: transitionIn 0.3s;
 }
 
 .yourNextEvent {
@@ -60,7 +62,7 @@
   border: 2px solid #fd2828;
   border-radius: 8px;
   transition: box-shadow 0.3s;
-  animation: transitionIn 1.5s;
+  animation: transitionIn 1s;
 }
 
 .button:hover {
@@ -70,4 +72,14 @@
 
 .button:active {
   box-shadow: -1px -1px 2px 1px rgb(10, 10, 10);
+}
+
+@keyframes transitionIn {
+  from {
+      opacity: 0;
+      transform: translateX(-10px);
+    }
+    to {
+      opacity: 1;
+  }
 }

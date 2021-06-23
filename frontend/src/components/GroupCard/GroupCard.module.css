@@ -1,3 +1,83 @@
+.a {
+  text-decoration: none;
+}
+
 .groupCard {
-  border: 1px solid black;
+  display: flex;
+  animation: transitionIn 1s;
+  /* border: 1px solid black; */
+}
+
+.image {
+  z-index: 50;
+  min-width: 260px;
+  height: 200px;
+  margin-bottom: 20px;
+  color: white;
+  background-color: black;
+  border-radius: 8px;
+}
+
+.groupInfo {
+  display: block;
+  position: relative;
+  min-width: 500px;
+  left: -40px;
+  margin-left: 20px;
+  margin-top: 20px;
+  padding: 10px;
+  padding-left: 40px;
+  opacity: 90%;
+  box-shadow: -2px 2px 6px 1px #111;
+  color: white;
+  background-color: #1e1f23;
+  border-radius: 8px;
+}
+
+.groupTitle {
+
+}
+
+.divider {
+  background-color: red;
+  width: 100px;
+  height: 3px;
+  position: relative;
+  left: 220px;
+  top: -8px;
+  animation: wait 1.5s ease-in;
+}
+
+.typeName {
+  color: white;
+  text-align: end;
+}
+
+.about {
+
+}
+
+.owner {
+
+}
+
+@keyframes transitionIn {
+  from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+  }
+}
+
+@keyframes wait {
+  from {
+    transform: translateX(-600px);
+    width: 400px;
+  }
+  to {
+    transform: translateX(0px);
+    /* width: 200px; */
+  }
 }

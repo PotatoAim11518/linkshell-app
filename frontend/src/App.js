@@ -34,10 +34,10 @@ function App() {
           <Route path="/discover">
             <h1>Discover Events and Groups</h1>
             <nav>
-              <NavLink to='/discover/groups'>Groups</NavLink>
-                <GroupsList />
+              <NavLink to='/discover/groups'>Groups</NavLink> |
               <NavLink to='/discover/events'>Events</NavLink>
             </nav>
+            <GroupsList />
           </Route>
         </Switch>
       )}

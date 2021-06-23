@@ -1,3 +1,13 @@
 .groupsList {
-  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 30px;
+  padding-right: 300px;
+  /* border: 1px solid black; */
+}
+
+.header {
+  text-align: left;
 }

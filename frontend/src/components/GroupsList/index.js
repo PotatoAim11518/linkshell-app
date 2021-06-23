@@ -15,7 +15,7 @@ const GroupsList = () => {
 
   return (
     <div className={styles.groupsList}>
-      <h2>Groups</h2>
+      <h2 className={styles.header}>Groups</h2>
       {groups.map((group) => <GroupCard key={group.id} group={group}/>)}
     </div>
   )
