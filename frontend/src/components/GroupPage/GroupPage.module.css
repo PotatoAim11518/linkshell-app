@@ -1,0 +1,93 @@
+h2, h3 {
+  color: white;
+  position: relative;
+  text-align: left;
+  left: 300px;
+  animation: wait 1.5s;
+}
+
+.pageContainer {
+  display: block;
+  padding-right: 300px;
+  /* border: 1px solid black; */
+}
+
+.divider {
+  background-color: red;
+  width: 140px;
+  height: 3px;
+  position: relative;
+  left: 320px;
+  top: -18px;
+  animation: divider 1.5s ease-in;
+}
+
+.image {
+  background-color: black;
+  width: 100vw;
+  height: 45vh;
+  animation: transitionIn 1s;
+}
+
+.nav {
+  display: flex;
+  position: sticky;
+  height: 2.5em;
+  padding-left: 80px;
+  background-color: #101010;
+  top: 0px;
+  z-index: 150;
+  animation: wait 1.5s;
+}
+
+.navLink {
+  color: white;
+  font-family: 'Raleway', sans-serif;
+  font-size: 1em;
+  font-weight: 100;
+  text-decoration: none;
+  margin: 10px 20px;
+  border-bottom: transparent;
+  transition: border-bottom 0.4s;
+}
+
+.navLink:hover {
+  border-bottom: 2px solid red;
+  transition: border-bottom 0.4s;
+}
+
+.navLinkActive {
+  font-weight: 200;
+  border-bottom: 2px solid red;
+}
+
+@keyframes wait {
+  from {
+    transform: translateX(-600px);
+    width: 600px;
+  }
+  to {
+    transform: translateX(0px);
+    width: 100%;
+  }
+}
+
+@keyframes divider {
+  from {
+    transform: translateX(1000px);
+    width: 600px;
+  }
+  to {
+    transform: translateX(0px);
+  }
+}
+
+@keyframes transitionIn {
+  from {
+      opacity: 0;
+      transform: translateX(10px);
+    }
+    to {
+      opacity: 1;
+  }
+}

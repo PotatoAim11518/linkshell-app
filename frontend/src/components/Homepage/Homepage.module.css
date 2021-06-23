@@ -1,0 +1,92 @@
+.loggedOutPage {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.pageContainer {
+  display: flex;
+  flex-direction: column;
+  margin: 100px;
+  padding-left: 50px;
+}
+
+.section {
+  min-width: 800px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  animation: transitionIn 1s;
+}
+
+.buttonContainer {
+  background-color: #1e1f23;
+  padding: 10px;
+  border: 1px solid #1e1f23;
+  border-radius: 5px;
+  opacity: 90%;
+  box-shadow: -2px 2px 6px 1px #111;
+}
+
+.image {
+  width: 200px;
+  height: 160px;
+  color: white;
+  background-color: black;
+}
+
+.sectionTitle {
+  color: white;
+  animation: transitionIn 0.3s;
+}
+
+.yourNextEvent {
+  padding-right: 40px;
+}
+
+.explore {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.explore > h4 {
+  font-weight: 200;
+  color: white;
+}
+
+.button {
+  color: #fd2828;
+  text-transform: uppercase;
+  font-weight: 200;
+  text-decoration: none;
+  margin: 20px 0px;
+  padding: 12px 20px;
+  max-width: 228px;
+  background-color: transparent;
+  border: 2px solid #fd2828;
+  border-radius: 8px;
+  transition: box-shadow 0.3s;
+  animation: transitionIn 1s;
+}
+
+.button:hover {
+  color: white;
+  background-color: #fd2828;
+}
+
+.button:active {
+  box-shadow: -1px -1px 2px 1px rgb(10, 10, 10);
+}
+
+@keyframes transitionIn {
+  from {
+      opacity: 0;
+      transform: translateX(-10px);
+    }
+    to {
+      opacity: 1;
+  }
+}

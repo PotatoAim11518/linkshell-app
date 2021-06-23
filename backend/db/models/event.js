@@ -33,7 +33,10 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, {});
   Event.associate = function(models) {
-    Event.belongsTo(models.Location, {foreignKey: 'typeId'})
+    Event.hasMany(models.RSVP, {foreignKey: 'eventId'})
+    Event.belongsTo(models.Location, {foreignKey: 'locationId'})
+    Event.belongsTo(models.User, {foreignKey: 'hostId'})
+    Event.belongsTo(models.Group, {foreignKey: 'groupId'})
   };
   return Event;
 };

@@ -22,15 +22,18 @@ module.exports = {
       },
       hostId: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {model: "Users"}
       },
       locationId: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {model: "Locations"}
       },
       groupId: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {model: "Groups"}
       },
       createdAt: {
         allowNull: false,

@@ -1,1 +1,7 @@
 /* TODO Add site wide styles */
+body {
+  margin: 0;
+  padding-right: 40px;
+  background-color:#27282c;
+  font-family: 'Raleway', sans-serif;
+}

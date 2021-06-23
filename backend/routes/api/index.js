@@ -9,9 +9,11 @@ const { requireAuth } = require('../../utils/auth.js');
 
 const sessionRouter = require('./session');
 const usersRouter = require('./users');
+const groupsRouter = require('./groups');
 
 router.use('/session', sessionRouter);
 router.use('/users', usersRouter);
+router.use('/groups', groupsRouter);
 
 // -----TEST ROUTES FOR MIDDLEWARE-----
 // // GET /api/set-token-cookie

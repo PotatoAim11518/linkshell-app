@@ -1,0 +1,39 @@
+.nav {
+  display: flex;
+  position: sticky;
+  padding-left: 80px;
+  background-color: #101010;
+  top: 0px;
+  z-index: 150;
+}
+
+.navLink {
+  color: white;
+  font-family: 'Raleway', sans-serif;
+  font-size: 2em;
+  font-weight: 100;
+  text-decoration: none;
+  margin: 10px 20px;
+  border-bottom: transparent;
+  transition: border-bottom 0.5s;
+}
+
+.navLink:hover {
+  border-bottom: 3px solid red;
+  transition: border-bottom 0.5s;
+}
+
+.navLinkActive {
+  border-bottom: 3px solid red;
+}
+
+@keyframes wait {
+  from {
+    transform: translateX(-600px);
+    width: 400px;
+  }
+  to {
+    transform: translateX(0px);
+    /* width: 200px; */
+  }
+}
