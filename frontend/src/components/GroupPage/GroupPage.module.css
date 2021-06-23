@@ -84,10 +84,10 @@ h2, h3 {
 
 @keyframes transitionIn {
   from {
-      opacity: 0;
+      opacity: 0%;
       transform: translateX(10px);
     }
     to {
-      opacity: 1;
+      opacity: 100%;
   }
 }
