@@ -2,6 +2,7 @@
 import React, { useEffect, }from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getGroups } from '../../store/groups';
+import { getTypes } from "../../store/types";
 import styles from './GroupsList.module.css';
 import GroupCard from "../GroupCard";
 
@@ -11,6 +12,7 @@ const GroupsList = () => {
 
   useEffect(() => {
     dispatch(getGroups());
+    dispatch(getTypes());
   }, [dispatch]);
 
   return (

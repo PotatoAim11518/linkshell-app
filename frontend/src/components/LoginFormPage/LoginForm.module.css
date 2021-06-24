@@ -26,6 +26,13 @@ input.custom {
   caret-color: red;
 }
 
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .button {
   color: #fd2828;
   text-transform: uppercase;

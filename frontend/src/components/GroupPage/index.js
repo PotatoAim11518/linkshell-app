@@ -4,26 +4,30 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams, Link, NavLink, Switch, Route } from "react-router-dom";
 import { getGroups, updateGroup, getGroup } from '../../store/groups';
 import styles from './GroupPage.module.css';
-import About from "../GroupPageAbout";
+import About from "./About";
+import EditGroupForm from './EditGroup';
 
 const GroupPage = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
+
   const group = useSelector((state) => state.groups[id]);
+  const types = useSelector((state) => state.types);
   const user = useSelector((state) => state.session.user) || null;
 
-  useEffect(()=>{
-    dispatch(getGroup(id))
-  },[dispatch, id])
-
   const ownerName = group.User.username;
+
+  useEffect(() => {
+    dispatch(getGroups())
+  },[dispatch])
+
 
   return (
     <>
       <div className={styles.pageContainer}>
-        <h2>{group.name}</h2>
+        <h2 className={styles.groupName}>{group.name}</h2>
         <div className={styles.divider}></div>
-        <h3><em>Organized by </em> {group.User.username}</h3>
+        <h3 className={styles.groupOwner}><em>Organized by </em> {group.User.username}</h3>
         <div className={styles.image}>
           <p>Placeholder for Image</p>
         </div>
@@ -44,11 +48,14 @@ const GroupPage = () => {
             to={`/groups/${id}/edit`}>Edit Group
             </NavLink>
           )}
+          <div className={styles.groupType}>
+            {group.Type.name}
+          </div>
         </nav>
         <div className={styles.info}>
           <Switch>
             <Route exact path={`/groups/${id}`}>
-              <About />
+              <About group={group}/>
             </Route>
             <Route path={`/groups/${id}/events`}>
               <p>Events Section</p>
@@ -57,7 +64,7 @@ const GroupPage = () => {
               <p>Members Section</p>
             </Route>
             <Route path={`/groups/${id}/edit`}>
-              <p>Edit Group Form</p>
+              <EditGroupForm group={group}/>
             </Route>
           </Switch>
         </div>

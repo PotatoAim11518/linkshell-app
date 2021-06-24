@@ -1,9 +1,32 @@
-h2, h3 {
+.groupName, .groupOwner {
   color: white;
   position: relative;
   text-align: left;
   left: 300px;
   animation: wait 1.5s;
+}
+
+.groupName {
+  font-size: 40px;
+  left: 200px;
+}
+
+.groupOwner {
+  font-size: 20px;
+  font-weight: 100;
+}
+
+.groupType {
+  color: white;
+  position: relative;
+  font-size: 45px;
+  right: -20vw;
+  bottom: 30px;
+  animation: transitionIn 1.5s;
+}
+
+.groupOwner {
+  animation: wait 2.3s;
 }
 
 .pageContainer {
@@ -14,11 +37,11 @@ h2, h3 {
 
 .divider {
   background-color: red;
-  width: 140px;
+  width: 200px;
   height: 3px;
   position: relative;
   left: 320px;
-  top: -18px;
+  top: -28px;
   animation: divider 1.5s ease-in;
 }
 
@@ -31,8 +54,10 @@ h2, h3 {
 
 .nav {
   display: flex;
+  flex-direction: row;
   position: sticky;
   height: 2.5em;
+  width: auto;
   padding-left: 80px;
   background-color: #101010;
   top: 0px;
