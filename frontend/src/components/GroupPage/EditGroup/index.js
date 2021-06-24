@@ -1,32 +1,33 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory, useParams } from 'react-router-dom';
 import { getGroup, updateGroup } from '../../../store/groups';
 
 
 const EditGroupForm = ({group}) => {
-  const { id, name, about, typeId } = group;
-  const [newName, setNewName ] = useState(name);
-  const [newAbout, setNewAbout ] = useState(about);
-  const [newTypeId, setNewTypeId ] = useState(typeId);
+
   const dispatch = useDispatch();
+
+  console.log('===========GROUP: ', group)
+
+  const [newName, setNewName ] = useState(group.name);
+  const [newAbout, setNewAbout ] = useState(group.about);
+  const [newTypeId, setNewTypeId ] = useState(group.typeId);
+
   const history = useHistory();
+
+  const types = useSelector((state) => Object.values(state.types));
 
   const updateName = (e) => setNewName(e.target.value);
   const updateAbout = (e) => setNewAbout(e.target.value);
+  const updateType = (e) => setNewTypeId(e.target.value);
 
-  useEffect(() =>{
-    // TO DO dispatch(getTypes())
-    dispatch(getGroup(id))
-
-  },[dispatch, id])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const payload = {
       ...group,
-      id: id,
       name: newName,
       about: newAbout,
       typeId: newTypeId
@@ -34,15 +35,18 @@ const EditGroupForm = ({group}) => {
 
     let updatedGroup = await dispatch(updateGroup(payload))
     if (updatedGroup) {
-      history.push(`/groups/${id}`)
-      return
+      // history.push(`/groups/${id}`)
     }
   }
 
   const handleCancelClick = (e) => {
     e.preventDefault();
-    history.push(`/groups/${id}`);
+    history.push(`/groups/${group.id}`);
   }
+
+  useEffect(() => {
+    getGroup(group.id)
+  },[dispatch, group.id])
 
   return (
     <fieldset>
@@ -64,6 +68,13 @@ const EditGroupForm = ({group}) => {
             value={newAbout}
             onChange={updateAbout}
           />
+        </div>
+        <div>
+          <select onChange={updateType} defaultValue={group.typeId}>
+            {types && types.map((type) => (
+              <option key={type.id} value={type.id}>{type.name}</option>
+            ))}
+          </select>
         </div>
         <button type="submit">Update</button>
         <button type="button" onClick={handleCancelClick}>Cancel</button>

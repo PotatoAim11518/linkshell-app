@@ -10,14 +10,17 @@ import EditGroupForm from './EditGroup';
 const GroupPage = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
+
   const group = useSelector((state) => state.groups[id]);
+  const types = useSelector((state) => state.types);
   const user = useSelector((state) => state.session.user) || null;
 
-  useEffect(()=>{
-    dispatch(getGroup(id))
-  },[dispatch, id])
-
   const ownerName = group.User.username;
+
+  useEffect(() => {
+    dispatch(getGroups())
+  },[dispatch])
+
 
   return (
     <>
@@ -40,11 +43,12 @@ const GroupPage = () => {
           <NavLink className={styles.navLink} activeClassName={styles.navLinkActive}
             to={`/groups/${id}/members`}>Members
           </NavLink>
-          {(user?.username === ownerName) && (
+          {(user.username === ownerName) && (
             <NavLink className={`${styles.editBtn} ${styles.navLink}`} activeClassName={styles.navLinkActive}
             to={`/groups/${id}/edit`}>Edit Group
             </NavLink>
           )}
+          <h3 className={styles.groupType}>{group.Type.name}</h3>
         </nav>
         <div className={styles.info}>
           <Switch>

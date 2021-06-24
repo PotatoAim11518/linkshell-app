@@ -10,10 +10,12 @@ const { requireAuth } = require('../../utils/auth.js');
 const sessionRouter = require('./session');
 const usersRouter = require('./users');
 const groupsRouter = require('./groups');
+const typesRouter = require('./types');
 
 router.use('/session', sessionRouter);
 router.use('/users', usersRouter);
 router.use('/groups', groupsRouter);
+router.use('/types', typesRouter);
 
 // -----TEST ROUTES FOR MIDDLEWARE-----
 // // GET /api/set-token-cookie

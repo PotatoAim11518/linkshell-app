@@ -6,6 +6,16 @@
   animation: wait 1.5s;
 }
 
+.groupType {
+  color: white;
+  position: relative;
+  text-align: right;
+  font-size: 40px;
+  left: 500px;
+  bottom: 30px;
+  animation: transitionIn 1.5s;
+}
+
 .groupOwner {
   animation: wait 2.3s;
 }
@@ -76,12 +86,14 @@
 
 .aboutText {
   color: white;
+  width: 40vw;
   position: relative;
   font-weight: 100;
   text-align: left;
   left: 80px;
   animation: wait 2s;
 }
+
 
 @keyframes wait {
   from {

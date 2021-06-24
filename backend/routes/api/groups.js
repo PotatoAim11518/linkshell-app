@@ -67,8 +67,8 @@ router.get(
   asyncHandler(async (_req, res, next) => {
     const groups = await Group.findAll({
       include: [
-        { model: Type, attributes: ["name"] },
-        { model: User, attributes: ["username"] },
+        { model: Type, attributes: ["id", "name"] },
+        { model: User, attributes: ["username"] }
       ],
     });
     res.json(groups);
@@ -114,10 +114,11 @@ router.get(
     validateGroup,
     requireAuth,
     asyncHandler(async (req, res) => {
-      const {id} = req.body;
+      const {id} = req.params;
+      console.log(req.body)
       const editGroup = await Group.update(req.body, {
         where: {
-          id
+          id: id
         }
       });
       return res.json(editGroup);

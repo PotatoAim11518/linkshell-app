@@ -13,6 +13,7 @@ const add = (group) => ({
   type: ADD_GROUP,
   group
 })
+
 const update = (group) => ({
   type: UPDATE_GROUP,
   group

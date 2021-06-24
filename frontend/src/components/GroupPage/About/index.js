@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import styles from '../GroupPage.module.css';
+import { getGroup } from '../../../store/groups'
 
 export default function About({group}) {
 
-  const user = useSelector((state) => state.session.user);
+  useEffect(() => {
+    getGroup(group.id)
+  },[group])
 
   return (
     <>
