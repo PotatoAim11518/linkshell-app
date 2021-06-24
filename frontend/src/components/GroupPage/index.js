@@ -12,11 +12,13 @@ const GroupPage = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
 
-  const group = useSelector((state) => state.groups[id]);
+  const groups = useSelector((state) => state?.groups);
   const types = useSelector((state) => state.types);
-  const user = useSelector((state) => state.session.user) || null;
+  const user = useSelector((state) => state.session.user);
 
-  const ownerName = group.User.username;
+  const group = groups[id]
+
+
 
   useEffect(() => {
     dispatch(getGroups())
@@ -26,9 +28,9 @@ const GroupPage = () => {
   return (
     <>
       <div className={styles.pageContainer}>
-        <h2 className={styles.groupName}>{group.name}</h2>
+        <h2 className={styles.groupName}>{group?.name}</h2>
         <div className={styles.divider}></div>
-        <h3 className={styles.groupOwner}><em>Organized by </em> {group.User.username}</h3>
+        <h3 className={styles.groupOwner}><em>Organized by </em> {group?.User?.username}</h3>
         <div className={styles.image}>
           <p>Placeholder for Image</p>
         </div>
@@ -44,7 +46,7 @@ const GroupPage = () => {
           <NavLink className={styles.navLink} activeClassName={styles.navLinkActive}
             to={`/groups/${id}/members`}>Members
           </NavLink>
-          {(user?.username === ownerName) && (
+          {(user?.username === group?.User?.username) && (
             <>
               <NavLink className={`${styles.editBtn} ${styles.navLink}`} activeClassName={styles.navLinkActive}
               to={`/groups/${id}/edit`}>Edit Group
@@ -55,7 +57,7 @@ const GroupPage = () => {
             </>
           )}
           <div className={styles.groupType}>
-            {group.Type.name}
+            {group?.Type?.name}
           </div>
         </nav>
         <div className={styles.info}>

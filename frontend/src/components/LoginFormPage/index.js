@@ -1,6 +1,6 @@
 // frontend/src/components/LoginFormPage/index.js
 import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import styles from './LoginForm.module.css'
 

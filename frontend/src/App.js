@@ -9,6 +9,7 @@ import GroupsList from '../src/components/GroupsList';
 import Homepage from '../src/components/Homepage';
 import DiscoverNav from '../src/components/DiscoverNav';
 import GroupPage from '../src/components/GroupPage';
+import CreateGroupForm from '../src/components/GroupCreation';
 import { restoreUser } from './store/session';
 
 function App() {
@@ -33,6 +34,9 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
+          <Route exact path='/groups/create'>
+            <CreateGroupForm />
+          </Route>
           <Route path="/groups/:id">
             <GroupPage />
           </Route>
@@ -43,6 +47,9 @@ function App() {
           <Route path='/discover/events'>
             <DiscoverNav/>
             <h2>Events go here</h2>
+          </Route>
+          <Route>
+            <h1>Resource not Found</h1>
           </Route>
         </Switch>
       )}

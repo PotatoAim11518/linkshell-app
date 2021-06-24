@@ -7,13 +7,13 @@ import { getGroup } from '../../../store/groups'
 export default function About({group}) {
 
   useEffect(() => {
-    getGroup(group.id)
+    getGroup(group?.id)
   },[group])
 
   return (
     <>
       <h3 className={styles.aboutHeader}>What we're about</h3>
-      <p className={styles.aboutText}>{group.about}</p>
+      <p className={styles.aboutText}>{group?.about}</p>
     </>
   )
 }

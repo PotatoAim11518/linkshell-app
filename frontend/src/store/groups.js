@@ -65,8 +65,7 @@ export const deleteGroup = (groupId) => async dispatch => {
   });
 
   if (response.ok) {
-    const deleteGroup = await response.json();
-    dispatch(remove(deleteGroup.id));
+    dispatch(remove(groupId));
   }
 }
 
