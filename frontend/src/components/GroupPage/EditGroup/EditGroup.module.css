@@ -65,6 +65,7 @@
 .button {
   text-transform: uppercase;
   font-weight: 600;
+  font-size: 16px;
   margin: 20px;
   padding: 12px 0px;
   min-width: 228px;
