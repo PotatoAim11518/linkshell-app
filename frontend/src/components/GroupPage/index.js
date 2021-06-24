@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, Link, NavLink, Switch, Route } from "react-router-dom";
 import { getGroups, updateGroup, getGroup } from '../../store/groups';
+import { getTypes } from '../../store/types';
 import styles from './GroupPage.module.css';
 import About from "./About";
 import EditGroupForm from './EditGroup';
@@ -18,10 +19,9 @@ const GroupPage = () => {
 
   const group = groups[id]
 
-
-
   useEffect(() => {
     dispatch(getGroups())
+    dispatch(getTypes())
   },[dispatch])
 
 

@@ -56,43 +56,45 @@ const CreateGroupForm = () => {
   }, [dispatch]);
 
   return (
-    <fieldset className={styles.fieldset}>
-      <legend className={styles.legend}>Create your group</legend>
-      <form className={styles.form} onSubmit={handleSubmit}>
-        <div className={styles.valueContainers}>
-          <input className={styles.input}
-            type="text"
-            placeholder="New group name"
-            required
-            value={newName}
-            onChange={updateName}
-          />
-        </div>
-        <div className={styles.valueContainers}>
-          <select className={styles.select} onChange={updateType} defaultValue={newTypeId}>
-            {types && types.map((type) => (
-              <option key={type.id} value={type.id}>{type.name}</option>
-            ))}
-          </select>
-        </div>
-        <div className={styles.valueContainers}>
-          <textarea className={styles.textarea}
-            rows="10"
-            cols="120"
-            minlength="10"
-            maxlength="2000"
-            placeholder="Tell us about your group"
-            required
-            value={newAbout}
-            onChange={updateAbout}>
-          </textarea>
-        </div>
-        <div className={styles.buttonContainer}>
-          <button className={`${styles.button} ${styles.cancel}`} type="button" onClick={handleCancelClick}>Cancel</button>
-          <button className={`${styles.button} ${styles.update}`} type="submit">Create</button>
-        </div>
-      </form>
-    </fieldset>
+    <div className={styles.formContainer}>
+      <fieldset className={styles.fieldset}>
+        <legend className={styles.legend}>Create your group</legend>
+        <form className={styles.form} onSubmit={handleSubmit}>
+          <div className={styles.valueContainers}>
+            <input className={styles.input}
+              type="text"
+              placeholder="New group name"
+              required
+              value={newName}
+              onChange={updateName}
+            />
+          </div>
+          <div className={styles.valueContainers}>
+            <select className={styles.select} onChange={updateType} defaultValue={newTypeId}>
+              {types && types.map((type) => (
+                <option key={type.id} value={type.id}>{type.name}</option>
+              ))}
+            </select>
+          </div>
+          <div className={styles.valueContainers}>
+            <textarea className={styles.textarea}
+              rows="10"
+              cols="120"
+              minlength="10"
+              maxlength="2000"
+              placeholder="Tell us about your group"
+              required
+              value={newAbout}
+              onChange={updateAbout}>
+            </textarea>
+          </div>
+          <div className={styles.buttonContainer}>
+            <button className={`${styles.button} ${styles.cancel}`} type="button" onClick={handleCancelClick}>Cancel</button>
+            <button className={`${styles.button} ${styles.update}`} type="submit">Create</button>
+          </div>
+        </form>
+      </fieldset>
+    </div>
   )
 }
 

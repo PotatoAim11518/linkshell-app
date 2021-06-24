@@ -11,11 +11,13 @@ const sessionRouter = require('./session');
 const usersRouter = require('./users');
 const groupsRouter = require('./groups');
 const typesRouter = require('./types');
+const eventsRouter = require('./events');
 
 router.use('/session', sessionRouter);
 router.use('/users', usersRouter);
 router.use('/groups', groupsRouter);
 router.use('/types', typesRouter);
+router.use('/events', eventsRouter);
 
 // -----TEST ROUTES FOR MIDDLEWARE-----
 // // GET /api/set-token-cookie

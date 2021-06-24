@@ -1,3 +1,10 @@
+.formContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+
 .fieldset {
   color: white;
   font-weight: 400;
