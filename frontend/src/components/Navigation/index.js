@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
+import CreateGroupButton from '../GroupCreation/CreateGroupButton';
 import styles from './Navigation.module.css'
 
 const Navigation = ({ isLoaded }) => {
@@ -33,7 +34,12 @@ const Navigation = ({ isLoaded }) => {
       <div className={styles.homeBtn}>
         <NavLink exact to='/' className={styles.navlink} activeClassName={styles.navlink__active}>Home</NavLink>
       </div>
-      {isLoaded && sessionLinks}
+      <div className={styles.createGroupButton}>
+        <CreateGroupButton />
+      </div>
+      <div className={styles.sessionLinks}>
+        {isLoaded && sessionLinks}
+      </div>
     </div>
   )
 }

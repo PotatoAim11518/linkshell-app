@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { getGroup, deleteGroup } from '../../../store/groups';
+import { getGroups, deleteGroup } from '../../../store/groups';
 import styles from './DeleteGroup.module.css';
 
 
@@ -12,18 +12,21 @@ const DeleteGroup = ({group}) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    window.alert("Let's not get too hasty...")
-    // let removedGroup = await dispatch(deleteGroup(group.id))
-    // if (removedGroup) {
-    //   dispatch(getGroup(group.id))
-    //   history.push(`/discover/groups`)
-    // }
+    let removedGroup = await dispatch(deleteGroup(group.id))
+    if (removedGroup) {
+      dispatch(getGroups())
+    }
+    history.push(`/discover/groups`)
   }
 
   const handleCancelClick = (e) => {
     e.preventDefault();
-    history.push(`/groups/${group.id}`);
+    history.goBack();
   }
+
+  useEffect(() => {
+    dispatch(getGroups())
+  },[dispatch])
 
   return (
     <fieldset className={styles.fieldset}>
