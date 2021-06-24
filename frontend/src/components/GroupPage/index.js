@@ -6,6 +6,7 @@ import { getGroups, updateGroup, getGroup } from '../../store/groups';
 import styles from './GroupPage.module.css';
 import About from "./About";
 import EditGroupForm from './EditGroup';
+import DeleteGroup from './DeleteGroup';
 
 const GroupPage = () => {
   const { id } = useParams();
@@ -44,9 +45,14 @@ const GroupPage = () => {
             to={`/groups/${id}/members`}>Members
           </NavLink>
           {(user?.username === ownerName) && (
-            <NavLink className={`${styles.editBtn} ${styles.navLink}`} activeClassName={styles.navLinkActive}
-            to={`/groups/${id}/edit`}>Edit Group
-            </NavLink>
+            <>
+              <NavLink className={`${styles.editBtn} ${styles.navLink}`} activeClassName={styles.navLinkActive}
+              to={`/groups/${id}/edit`}>Edit Group
+              </NavLink>
+              <NavLink className={`${styles.deleteBtn} ${styles.navLink}`} activeClassName={styles.navLinkActive}
+              to={`/groups/${id}/delete`}>Delete Group
+              </NavLink>
+            </>
           )}
           <div className={styles.groupType}>
             {group.Type.name}
@@ -65,6 +71,9 @@ const GroupPage = () => {
             </Route>
             <Route path={`/groups/${id}/edit`}>
               <EditGroupForm group={group}/>
+            </Route>
+            <Route path={`/groups/${id}/delete`}>
+              <DeleteGroup group={group}/>
             </Route>
           </Switch>
         </div>
