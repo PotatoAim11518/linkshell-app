@@ -43,7 +43,7 @@ const GroupPage = () => {
           <NavLink className={styles.navLink} activeClassName={styles.navLinkActive}
             to={`/groups/${id}/members`}>Members
           </NavLink>
-          {(user.username === ownerName) && (
+          {(user?.username === ownerName) && (
             <NavLink className={`${styles.editBtn} ${styles.navLink}`} activeClassName={styles.navLinkActive}
             to={`/groups/${id}/edit`}>Edit Group
             </NavLink>

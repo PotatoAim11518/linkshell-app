@@ -24,6 +24,7 @@
   display: block;
   position: relative;
   min-width: 500px;
+  max-width: 500px;
   left: -40px;
   margin-left: 20px;
   margin-top: 20px;
