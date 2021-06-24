@@ -4,6 +4,8 @@
 
 .groupCard {
   display: flex;
+  max-width: 550px;
+  height: auto;
   animation: transitionIn 1s;
   /* border: 1px solid black; */
 }

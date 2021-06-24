@@ -48,7 +48,9 @@ const GroupPage = () => {
             to={`/groups/${id}/edit`}>Edit Group
             </NavLink>
           )}
-          <h3 className={styles.groupType}>{group.Type.name}</h3>
+          <div className={styles.groupType}>
+            {group.Type.name}
+          </div>
         </nav>
         <div className={styles.info}>
           <Switch>

@@ -9,9 +9,8 @@
 .groupType {
   color: white;
   position: relative;
-  text-align: right;
-  font-size: 40px;
-  left: 500px;
+  font-size: 45px;
+  right: -20vw;
   bottom: 30px;
   animation: transitionIn 1.5s;
 }
@@ -45,8 +44,10 @@
 
 .nav {
   display: flex;
+  flex-direction: row;
   position: sticky;
   height: 2.5em;
+  width: auto;
   padding-left: 80px;
   background-color: #101010;
   top: 0px;
@@ -74,26 +75,6 @@
   font-weight: 200;
   border-bottom: 2px solid red;
 }
-
-
-.aboutHeader {
-  color: white;
-  position: relative;
-  text-align: left;
-  left: 80px;
-  animation: wait 1.5s;
-}
-
-.aboutText {
-  color: white;
-  width: 40vw;
-  position: relative;
-  font-weight: 100;
-  text-align: left;
-  left: 80px;
-  animation: wait 2s;
-}
-
 
 @keyframes wait {
   from {

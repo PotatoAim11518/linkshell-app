@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import styles from '../GroupPage.module.css';
+import styles from './About.module.css';
 import { getGroup } from '../../../store/groups'
 
 export default function About({group}) {
