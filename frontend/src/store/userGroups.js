@@ -1,22 +1,24 @@
 import { csrfFetch } from "./csrf";
 
 const SET_USERGROUPS = 'usergroups/SET_USERGROUPS';
-const ADD_USERGROUP = 'usergroups/ADD_USERGROUP';
-const REMOVE_USERGROUP = 'usergroups/REMOVE_USERGROUP';
+const JOIN_USERGROUP = 'usergroups/JOIN_USERGROUP';
+const LEAVE_USERGROUP = 'usergroups/LEAVE_USERGROUP';
 
 const setUserGroups = (userGroups) => ({
   type: SET_USERGROUPS,
   userGroups
 })
 
-const add = (userGroup) => ({
-  type: ADD_USERGROUP,
-  userGroup
+const join = (userId, groupId) => ({
+  type: JOIN_USERGROUP,
+  userId,
+  groupId
 })
 
-const remove = (userGroupId) => ({
-  type: REMOVE_USERGROUP,
-  userGroupId
+const leave = (userId, groupId) => ({
+  type: LEAVE_USERGROUP,
+  userId,
+  groupId
 })
 
 export const getUserGroups = () => async (dispatch) => {
@@ -35,7 +37,7 @@ export const joinUserGroup = (groupId, userId) => async dispatch => {
   });
   if (response.ok) {
     const newUserGroup = await response.json();
-    dispatch(add(newUserGroup));
+    dispatch(join(newUserGroup));
     return newUserGroup;
   }
 }
@@ -47,7 +49,7 @@ export const leaveUserGroup = (groupId, userId) => async dispatch => {
 
   if (response.ok) {
     const deleteGroup = await response.json();
-    dispatch(remove(deleteGroup.id));
+    dispatch(leave(deleteGroup.id));
   }
 }
 
@@ -60,13 +62,10 @@ const userGroupsReducer = (state=initialState, action) => {
       action.userGroups.forEach((userGroup) => {
         allUserGroups[userGroup.id] = userGroup;
       });
-      return {
-        ...state,
-        ...allUserGroups,
-      };
-    case ADD_USERGROUP:
+      return {...state, ...allUserGroups};
+    case JOIN_USERGROUP:
       return {...state, [action.userGroup.id]: action.userGroup}
-    case REMOVE_USERGROUP:
+    case LEAVE_USERGROUP:
       const newState = {...state}
       delete newState[action.userGroupId]
       return newState;
