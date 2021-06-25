@@ -18,8 +18,8 @@ const remove = (groupId) => ({
   groupId
 })
 
-export const getGroups = () => async (dispatch) => {
-  const response = await csrfFetch('/api/groups');
+export const getGroups = (limit) => async (dispatch) => {
+  const response = await csrfFetch('/api/groups', {limit});
   const groups = await response.json();
   dispatch(setGroups(groups));
 }

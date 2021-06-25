@@ -51,12 +51,14 @@ router.post(
 // GET / ---> Get all groups
 router.get(
   "/",
-  asyncHandler(async (_req, res, next) => {
+  asyncHandler(async (req, res, next) => {
+    const { limit } = req.body;
     const groups = await Group.findAll({
       include: [
         { model: Type, attributes: ["id", "name"] },
         { model: User, attributes: ["username"] },
       ],
+      limit,
     });
     res.json(groups);
   })
@@ -74,21 +76,6 @@ router.get(
       ],
     });
     res.json(group);
-  })
-);
-
-// GET /user/:id ---> Get a user's groups
-router.get(
-  "/user/:id",
-  asyncHandler(async (req, res, next) => {
-    const { id } = req.params;
-    const userGroups = await UserGroup.findAll({
-      where: {
-        userId: id,
-      },
-      include: [{ model: Group }, { model: User, attributes: ["username"] }],
-    });
-    res.json(userGroups);
   })
 );
 
@@ -131,14 +118,31 @@ router.delete(
 
 /////// UserGroup routes
 
+// GET /user/:id ---> Get a user's groups
+router.get(
+  "/user/:id",
+  asyncHandler(async (req, res, next) => {
+    const { id } = req.params;
+    const userGroups = await UserGroup.findAll({
+      where: {
+        userId: id,
+      },
+      include: [{ model: Group }, { model: User, attributes: ["username"] }],
+      limit,
+    });
+    res.json(userGroups);
+  })
+);
+
 // POST /   ---> Join a new user group
 router.post(
-  "/:groupId/user/:userId/join",
+  "/:groupId/join",
   requireAuth,
   asyncHandler(async (req, res, next) => {
-    const { groupId, userId } = req.params;
+    const { id } = req.user;
+    const { groupId } = req.params;
     const newUserGroup = await UserGroup.create({
-      userId,
+      userId: id,
       groupId,
     });
     return res.json(newUserGroup);
@@ -147,22 +151,22 @@ router.post(
 
 // DELETE /   ---> Remove a user from a group
 router.delete(
-  "/:groupId/user/:userId/leave",
+  "/:groupId/leave",
   requireAuth,
   asyncHandler(async (req, res, next) => {
     const { id } = req.user;
-    const { groupId, userId } = req.params;
-    const currentUserGroup = await UserGroup.findOne({
+    const { groupId } = req.params;
+    const deleteUserGroup = await UserGroup.findOne({
       where: {
-        userId,
+        userId: id,
         groupId,
       },
     });
 
-    if (id === userId) {
-      await currentUserGroup.destroy();
+    if (deleteUserGroup) {
+      await deleteUserGroup.destroy();
     }
-    return res.json({ currentUserGroup });
+    return res.json(deleteUserGroup);
   })
 );
 

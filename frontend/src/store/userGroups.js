@@ -1,32 +1,32 @@
 import { csrfFetch } from "./csrf";
 
 const SET_USERGROUPS = 'usergroups/SET_USERGROUPS';
-const ADD_USERGROUP = 'usergroups/ADD_USERGROUP';
-const REMOVE_USERGROUP = 'usergroups/REMOVE_USERGROUP';
+const JOIN_USERGROUP = 'usergroups/JOIN_USERGROUP';
+const LEAVE_USERGROUP = 'usergroups/LEAVE_USERGROUP';
 
 const setUserGroups = (userGroups) => ({
   type: SET_USERGROUPS,
   userGroups
 })
 
-const add = (userGroup) => ({
-  type: ADD_USERGROUP,
+const join = (userGroup) => ({
+  type: JOIN_USERGROUP,
   userGroup
 })
 
-const remove = (userGroupId) => ({
-  type: REMOVE_USERGROUP,
+const leave = (userGroupId) => ({
+  type: LEAVE_USERGROUP,
   userGroupId
 })
 
-export const getUserGroups = () => async (dispatch) => {
-  const response = await csrfFetch('/api/groups/user/:id');
+export const getUserGroups = (limit, userId) => async (dispatch) => {
+  const response = await csrfFetch(`/api/groups/user/${userId}`, {limit});
   const userGroups = await response.json();
   dispatch(setUserGroups(userGroups));
 }
 
 export const joinUserGroup = (groupId, userId) => async dispatch => {
-  const response = await csrfFetch(`/api/groups/${groupId}/user/${userId}/join`, {
+  const response = await csrfFetch(`/api/groups/${groupId}/join`, {
     method: "POST",
     body: JSON.stringify({
       userId,
@@ -35,19 +35,19 @@ export const joinUserGroup = (groupId, userId) => async dispatch => {
   });
   if (response.ok) {
     const newUserGroup = await response.json();
-    dispatch(add(newUserGroup));
+    dispatch(join(newUserGroup));
     return newUserGroup;
   }
 }
 
 export const leaveUserGroup = (groupId, userId) => async dispatch => {
-  const response = await csrfFetch(`/api/groups/${groupId}/user/${userId}/leave`, {
+  const response = await csrfFetch(`/api/groups/${groupId}/leave`, {
     method: "DELETE"
   });
 
   if (response.ok) {
-    const deleteGroup = await response.json();
-    dispatch(remove(deleteGroup.id));
+    const deleteUserGroup = await response.json();
+    dispatch(leave(deleteUserGroup.id));
   }
 }
 
@@ -60,13 +60,10 @@ const userGroupsReducer = (state=initialState, action) => {
       action.userGroups.forEach((userGroup) => {
         allUserGroups[userGroup.id] = userGroup;
       });
-      return {
-        ...state,
-        ...allUserGroups,
-      };
-    case ADD_USERGROUP:
+      return {...state, ...allUserGroups};
+    case JOIN_USERGROUP:
       return {...state, [action.userGroup.id]: action.userGroup}
-    case REMOVE_USERGROUP:
+    case LEAVE_USERGROUP:
       const newState = {...state}
       delete newState[action.userGroupId]
       return newState;
