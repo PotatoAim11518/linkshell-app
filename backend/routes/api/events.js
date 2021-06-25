@@ -2,7 +2,7 @@ const router = require("express").Router();
 const asyncHandler = require("express-async-handler");
 const { check } = require("express-validator");
 const { requireAuth } = require("../../utils/auth");
-const { Event, User, Location, Group } = require("../../db/models");
+const { Event, User, Location, Group, RSVP } = require("../../db/models");
 const { handleValidationErrors } = require("../../utils/validation");
 
 const validateEvent = [
@@ -142,38 +142,55 @@ router.delete(
 
 /////// RSVP routes
 
+// GET /user/:id ---> Get a user's RSVPs
+router.get(
+  "/user/:id",
+  asyncHandler(async (req, res, next) => {
+    const { id } = req.params;
+    const userGroups = await UserGroup.findAll({
+      where: {
+        userId: id,
+      },
+      include: [{ model: Group }, { model: User, attributes: ["username"] }],
+      limit
+    });
+    res.json(userGroups);
+  })
+);
+
 // POST /   ---> RSVP to an event
 router.post(
-  "/:eventId/user/:userId/add",
+  "/:eventId/add",
   requireAuth,
   asyncHandler(async (req, res, next) => {
-    const { eventId, userId } = req.params;
+    const { id } = req.user;
+    const { eventId } = req.params;
     const newRSVP = await RSVP.create({
-      userId,
+      userId: id,
       eventId,
     });
     return res.json(newRSVP);
   })
 );
 
-// DELETE /   ---> Remove a user from a group
+// DELETE /   ---> Remove a RSVP from an event
 router.delete(
-  "/:groupId/user/:userId/leave",
+  "/:eventId/leave",
   requireAuth,
   asyncHandler(async (req, res, next) => {
     const { id } = req.user;
-    const { groupId, userId } = req.params;
-    const currentUserGroup = await UserGroup.findOne({
+    const { eventId } = req.params;
+    const deleteRSVP = await RSVP.findOne({
       where: {
-        userId,
-        groupId,
+        userId: id,
+        eventId,
       },
     });
 
-    if (id === userId) {
-      await currentUserGroup.destroy();
+    if (deleteRSVP) {
+      await deleteRSVP.destroy();
     }
-    return res.json({ currentUserGroup });
+    return res.json(deleteRSVP);
   })
 );
 
