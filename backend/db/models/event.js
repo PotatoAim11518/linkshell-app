@@ -1,6 +1,10 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Event = sequelize.define('Event', {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+    },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -33,10 +37,10 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, {});
   Event.associate = function(models) {
-    Event.hasMany(models.RSVP, {foreignKey: 'eventId'})
-    Event.belongsTo(models.Location, {foreignKey: 'locationId'})
-    Event.belongsTo(models.User, {foreignKey: 'hostId'})
-    Event.belongsTo(models.Group, {foreignKey: 'groupId'})
+    Event.hasMany(models.RSVP, {foreignKey: 'eventId', as: "event" })
+    Event.belongsTo(models.Location, {foreignKey: 'locationId', as: "location" })
+    Event.belongsTo(models.User, {foreignKey: 'hostId', as: "host" })
+    Event.belongsTo(models.Group, {foreignKey: 'groupId', as: "group" })
   };
   return Event;
 };

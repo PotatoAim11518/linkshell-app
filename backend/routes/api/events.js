@@ -43,9 +43,9 @@ router.get(
     const { limit } = req.body;
     const events = await Event.findAll({
       include: [
-        { model: User, attributes: ["username"] },
-        { model: Location, attributes: ["name", "locale"] },
-        { model: Group, attributes: ["name"] },
+        { model: User, as: "host", attributes: ["username"] },
+        { model: Location, as: "location", attributes: ["name", "locale"] },
+        { model: Group, as: "group", attributes: ["name"] },
       ],
       order: [["date", "DESC"]],
       limit,

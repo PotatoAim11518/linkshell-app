@@ -6,6 +6,7 @@ import LoginFormPage from '../src/components/LoginFormPage';
 import SignupFormPage from '../src/components/SignupFormPage';
 import Navigation from '../src/components/Navigation';
 import GroupsList from '../src/components/GroupsList';
+import EventsList from '../src/components/EventsList';
 import Homepage from '../src/components/Homepage';
 import DiscoverNav from '../src/components/DiscoverNav';
 import GroupPage from '../src/components/GroupPage';
@@ -46,7 +47,7 @@ function App() {
           </Route>
           <Route path='/discover/events'>
             <DiscoverNav/>
-            <h2>Events go here</h2>
+            <EventsList />
           </Route>
           <Route>
             <h1>Resource not Found</h1>
