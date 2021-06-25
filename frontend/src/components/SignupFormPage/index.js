@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import CancelBackButton from '../CancelBackButton';
 import styles from './SignupForm.module.css'
 
 import * as sessionActions from '../../store/session';
@@ -31,69 +32,72 @@ const SignupFormPage = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <ul>
-        {errors.map((error, idx) => <p key={idx}>{error}</p>)}      </ul>
-      <label>
-        {/* Username */}
-        <div>
-          <input
-            className={styles.input}
-            type='text'
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            placeholder='Username'
-            required
+    <div className={styles.formContainer}>
+      <form onSubmit={handleSubmit}>
+        <ul>
+          {errors.map((error, idx) => <p key={idx}>{error}</p>)}      </ul>
+        <label>
+          {/* Username */}
+          <div>
+            <input
+              className={styles.input}
+              type='text'
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              placeholder='Username'
+              required
+              />
+          </div>
+        </label>
+        <label>
+          {/* Email */}
+          <div>
+            <input
+              className={styles.input}
+              type='email'
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder='Email'
+              required
+              />
+          </div>
+        </label>
+        <label>
+          {/* Password */}
+          <div>
+            <input
+              className={styles.input}
+              type='password'
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder='Enter Password'
+              required
+              />
+          </div>
+        </label>
+        <label>
+          {/* Confirm Password */}
+          <div>
+            <input
+              className={styles.input}
+              type='password'
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              placeholder='Confirm Password'
+              required
             />
+          </div>
+        </label>
+        <div className={styles.buttonContainer}>
+          <button
+            className={styles.button}
+            type='submit'
+          >Sign Up
+          </button>
+          <CancelBackButton />
         </div>
-      </label>
-      <label>
-        {/* Email */}
-        <div>
-          <input
-            className={styles.input}
-            type='email'
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder='Email'
-            required
-            />
-        </div>
-      </label>
-      <label>
-        {/* Password */}
-        <div>
-          <input
-            className={styles.input}
-            type='password'
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder='Enter Password'
-            required
-            />
-        </div>
-      </label>
-      <label>
-        {/* Confirm Password */}
-        <div>
-          <input
-            className={styles.input}
-            type='password'
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            placeholder='Confirm Password'
-            required
-          />
-        </div>
-      </label>
-      <div>
-        <button
-          className={styles.button}
-          type='submit'
-        >Sign Up
-        </button>
-      </div>
-    </form>
+      </form>
+    </div>
   )
 }
 

@@ -2,7 +2,9 @@
 import React, { useState } from 'react';
 import { Redirect, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import CancelBackButton from '../CancelBackButton';
 import styles from './LoginForm.module.css'
+
 
 import * as sessionActions from '../../store/session';
 
@@ -28,40 +30,42 @@ const LoginFormPage = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <ul>
-        {errors.map((error, idx) => <p key={idx}>{error}</p>)}      </ul>
-      <label>
-        {/* Username or Email */}
-        <div>
-          <input
-            className={styles.input}
-            type='text'
-            value={credential}
-            onChange={(e) => setCredential(e.target.value)}
-            placeholder='Username or Email'
-            required
-            />
+    <div className={styles.formContainer}>
+      <form onSubmit={handleSubmit}>
+        <ul>
+          {errors.map((error, idx) => <p key={idx}>{error}</p>)}      </ul>
+        <label>
+          {/* Username or Email */}
+          <div>
+            <input
+              className={styles.input}
+              type='text'
+              value={credential}
+              onChange={(e) => setCredential(e.target.value)}
+              placeholder='Username or Email'
+              required
+              />
+          </div>
+        </label>
+        <label>
+          {/* Password */}
+          <div>
+            <input
+              className={styles.input}
+              type='password'
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder='Enter Password'
+              required
+              />
+          </div>
+        </label>
+        <div className={styles.buttonContainer}>
+          <button className={styles.button} type='submit'>Log In</button>
+          <CancelBackButton />
         </div>
-      </label>
-      <label>
-        {/* Password */}
-        <div>
-          <input
-            className={styles.input}
-            type='password'
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder='Enter Password'
-            required
-            />
-        </div>
-      </label>
-      <div>
-        <button className={styles.button} type='submit'>Log In</button>
-
-      </div>
-    </form>
+      </form>
+    </div>
   )
 }
 

@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { getGroup, updateGroup } from '../../../store/groups';
+import { getTypes } from "../../../store/types";
 import styles from './EditGroup.module.css';
 
 
@@ -10,9 +11,9 @@ const EditGroupForm = ({group}) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const [newName, setNewName ] = useState(group.name);
-  const [newAbout, setNewAbout ] = useState(group.about);
-  const [newTypeId, setNewTypeId ] = useState(group.typeId);
+  const [newName, setNewName ] = useState(group?.name);
+  const [newAbout, setNewAbout ] = useState(group?.about);
+  const [newTypeId, setNewTypeId ] = useState(group?.typeId);
 
   const types = useSelector((state) => Object.values(state.types));
 
@@ -32,15 +33,22 @@ const EditGroupForm = ({group}) => {
 
     let updatedGroup = await dispatch(updateGroup(payload))
     if (updatedGroup) {
-      dispatch(getGroup(group.id))
-      history.push(`/groups/${group.id}`)
+      dispatch(getGroup(group?.id))
+      history.push(`/groups/${group?.id}`)
     }
   }
 
   const handleCancelClick = (e) => {
     e.preventDefault();
-    history.push(`/groups/${group.id}`);
+    history.push(`/groups/${group?.id}`);
   }
+
+  useEffect(() => {
+    setNewName(group?.name)
+    setNewTypeId(group?.typeId)
+    setNewAbout(group?.about)
+    dispatch(getTypes())
+  },[dispatch, group])
 
   return (
     <fieldset className={styles.fieldset}>
@@ -56,7 +64,7 @@ const EditGroupForm = ({group}) => {
           />
         </div>
         <div className={styles.valueContainers}>
-          <select className={styles.select} onChange={updateType} defaultValue={group.typeId}>
+          <select className={styles.select} onChange={updateType} defaultValue={group?.typeId}>
             {types && types.map((type) => (
               <option key={type.id} value={type.id}>{type.name}</option>
             ))}

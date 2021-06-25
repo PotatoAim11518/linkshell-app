@@ -1,3 +1,10 @@
+.formContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+
 .form {
   padding: 20px;
 }
@@ -26,10 +33,18 @@ input.custom {
   caret-color: red;
 }
 
+.buttonContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .button {
   color: #fd2828;
   text-transform: uppercase;
   font-weight: 600;
+  font-size: 16px;
   margin: 20px 0px;
   padding: 12px 0px;
   min-width: 228px;
