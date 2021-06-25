@@ -48,7 +48,6 @@ router.post(
   })
 );
 
-
 // GET / ---> Get all groups
 router.get(
   "/",
@@ -61,7 +60,7 @@ router.get(
     });
     res.json(groups);
   })
-  );
+);
 
 // GET /:id  ---> Get a group
 router.get(
@@ -76,9 +75,9 @@ router.get(
     });
     res.json(group);
   })
-  );
+);
 
-  // GET /user/:id ---> Get a user's groups
+// GET /user/:id ---> Get a user's groups
 router.get(
   "/user/:id",
   asyncHandler(async (req, res, next) => {
@@ -107,14 +106,14 @@ router.put(
     });
     return res.json(editGroup);
   })
-  );
+);
 
-  // DELETE ---> Delete a Group
-  router.delete(
-    "/:groupId",
-    requireAuth,
-    asyncHandler(async (req, res, next) => {
-      const { groupId } = req.params;
+// DELETE ---> Delete a Group
+router.delete(
+  "/:groupId",
+  requireAuth,
+  asyncHandler(async (req, res, next) => {
+    const { groupId } = req.params;
     const currentGroup = await Group.findByPk(groupId);
     if (!currentGroup) throw new Error("Cannot find matching group");
 
@@ -128,44 +127,43 @@ router.put(
     });
     return res.json({ groupId });
   })
-  );
+);
 
+/////// UserGroup routes
 
-  /////// UserGroup routes
+// POST /   ---> Join a new user group
+router.post(
+  "/:groupId/user/:userId/join",
+  requireAuth,
+  asyncHandler(async (req, res, next) => {
+    const { groupId, userId } = req.params;
+    const newUserGroup = await UserGroup.create({
+      userId,
+      groupId,
+    });
+    return res.json(newUserGroup);
+  })
+);
 
-  // POST /   ---> Join a new user group
-  router.post(
-    "/:groupId/user/:userId/join",
-    requireAuth,
-    asyncHandler(async (req, res, next) => {
-      const { groupId, userId } = req.params;
-      const newUserGroup = await UserGroup.create({
+// DELETE /   ---> Remove a user from a group
+router.delete(
+  "/:groupId/user/:userId/leave",
+  requireAuth,
+  asyncHandler(async (req, res, next) => {
+    const { id } = req.user;
+    const { groupId, userId } = req.params;
+    const currentUserGroup = await UserGroup.findOne({
+      where: {
         userId,
         groupId,
-      });
-      return res.json(newUserGroup);
-    })
-    );
+      },
+    });
 
-    // DELETE /   ---> Remove a user from a group
-  router.delete(
-    "/:groupId/user/:userId/leave",
-    requireAuth,
-    asyncHandler(async (req, res, next) => {
-      const { id } = req.user;
-      const { groupId, userId } = req.params;
-      const currentUserGroup = await UserGroup.findOne({
-        where: {
-          userId,
-          groupId,
-        },
-      });
+    if (id === userId) {
+      await currentUserGroup.destroy();
+    }
+    return res.json({ currentUserGroup });
+  })
+);
 
-      if (id === userId) {
-        await currentUserGroup.destroy();
-      }
-      return res.json({ currentUserGroup });
-    })
-    );
-
-    module.exports = router;
+module.exports = router;

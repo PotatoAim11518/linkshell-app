@@ -1,17 +1,12 @@
 import { csrfFetch } from "./csrf";
 
 const SET_GROUPS = 'groups/SET_GROUPS';
-const ADD_GROUP = 'groups/ADD_GROUP';
 const REMOVE_GROUP = 'groups/REMOVE_GROUP';
 const UPDATE_GROUP = 'groups/UPDATE_GROUP';
 
 const setGroups = (groups) => ({
   type: SET_GROUPS,
   groups
-})
-const add = (group) => ({
-  type: ADD_GROUP,
-  group
 })
 
 const update = (group) => ({
@@ -32,7 +27,7 @@ export const getGroups = () => async (dispatch) => {
 export const getGroup = (groupId) => async (dispatch) => {
   const response = await csrfFetch(`/api/groups/${groupId}`);
   const group = await response.json();
-  dispatch(add(group));
+  dispatch(update(group));
 }
 
 export const createGroup = (data) => async dispatch => {
@@ -42,7 +37,7 @@ export const createGroup = (data) => async dispatch => {
   });
   if (response.ok) {
     const newGroup = await response.json();
-    dispatch(add(newGroup));
+    dispatch(update(newGroup));
     return newGroup;
   }
 }
@@ -78,12 +73,7 @@ const groupsReducer = (state=initialState, action) => {
       action.groups.forEach( (group) => {
         allGroups[group.id] = group;
       });
-      return {
-        ...state,
-        ...allGroups,
-      };
-    case ADD_GROUP:
-      return {...state, [action.group.id]: action.group}
+      return {...state, ...allGroups};
     case UPDATE_GROUP:
       return {...state, [action.group.id]: action.group}
     case REMOVE_GROUP:
