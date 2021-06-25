@@ -37,8 +37,16 @@
   border-radius: 8px;
 }
 
-.eventTitle {
+.eventDateTime {
+  font-size: 20px;
+  font-weight: 400;
+}
 
+.groupName {
+  color: white;
+  text-align: end;
+  margin-top: 0;
+  font-size: 24px;
 }
 
 .divider {
@@ -51,23 +59,27 @@
   animation: wait 1.5s ease-in;
 }
 
-.typeName {
+.eventTitle {
+  margin: 0;
+  font-weight: 600;
+}
+
+.capacity {
   color: white;
   text-align: end;
-  margin-top: 0;
 }
 
-.about {
-
+.bottomRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-right: 20px;
 }
 
-.owner {
-
-}
 
 @keyframes transitionIn {
   from {
-      opacity: 0.0;
+    opacity: 0.0;
       transform: translateY(10px);
     }
     to {
