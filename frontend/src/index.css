@@ -1,7 +1,7 @@
 /* TODO Add site wide styles */
 body {
   margin: 0;
-  padding-right: 40px;
+  min-height: 100vh;
   background-color:#27282c;
   font-family: 'Raleway', sans-serif;
 }
