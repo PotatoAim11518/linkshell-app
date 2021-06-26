@@ -51,6 +51,10 @@
   caret-color: red;
 }
 
+.datePicker {
+  color: white;
+}
+
 .textarea {
   resize: none;
   font-size: 16px;

@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import DateTimePicker from 'react-datetime-picker'
+
 import { createEvent, getEvent } from '../../store/events';
 import { getLocations } from "../../store/locations";
-import DateRangePickerComponent from '../DatePicker';
-import 'react-nice-dates/build/style.css'
 import styles from './CreateEvent.module.css';
-
+import './DateTimePicker.css';
+import './Clock.css';
+import './Calendar.css';
 
 const CreateEventForm = ({group}) => {
 
@@ -37,10 +39,10 @@ const CreateEventForm = ({group}) => {
       const payload = {
         name: newName,
         date: newDate,
-        about: newAbout,
         capacity: newCapacity,
-        locationId: newLocationId,
+        about: newAbout,
         hostId: user.id,
+        locationId: newLocationId,
         groupId: group?.id
       }
       let newEvent = await dispatch(createEvent(payload))
@@ -74,10 +76,28 @@ const CreateEventForm = ({group}) => {
               onChange={updateName}
             />
           </div>
-          {/* <div className={styles.valueContainers}>
-            <DateRangePickerComponent newDate={newDate} setNewDate={setNewDate} updateDate={updateDate}/>
-          </div> */}
-
+          <div className={styles.valueContainers}>
+            <DateTimePicker
+              amPmAriaLabel="Select AM/PM"
+              calendarAriaLabel="Toggle calendar"
+              clearAriaLabel="Clear value"
+              dayAriaLabel="Day"
+              hourAriaLabel="Hour"
+              locale="en-US"
+              maxDetail="second"
+              minDate={new Date()}
+              minuteAriaLabel="Minute"
+              monthAriaLabel="Month"
+              nativeInputAriaLabel="Date and time"
+              onChange={updateDate}
+              openWidgetsOnFocus="true"
+              required
+              secondAriaLabel="Second"
+              showLeadingZeros="true"
+              value={newDate}
+              yearAriaLabel="Year"
+            />
+          </div>
           <div className={styles.valueContainers}>
             <textarea className={styles.textarea}
               rows="6"
