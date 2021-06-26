@@ -15,9 +15,15 @@
   border-radius: 8px;
 }
 
+.valueContainers {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+}
 .input {
   font-family: 'Raleway', sans-serif;
-  font-size: 26px;
+  font-size: 24px;
   min-width: 200px;
   padding: 5px;
   margin: 10px;
@@ -30,6 +36,9 @@
   animation: transitionIn 1s;
 }
 
+.eventName {
+  width: 100%;
+}
 .input:focus {
   border-bottom: 1px solid red;
 }
@@ -57,12 +66,23 @@
 
 .select {
   color: white;
-  font-size: 16px;
+  font-size: 20px;
   background-color: #27282c;
   border: none;
   padding: 3px;
   margin: 10px 15px;
   outline: none;
+}
+
+.capacity {
+  width: 40%;
+  text-align: center;
+}
+
+.capacity::-webkit-outer-spin-button,
+.capacity::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .buttonContainer {

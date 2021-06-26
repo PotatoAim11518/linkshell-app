@@ -16,6 +16,7 @@ const CreateEventForm = ({group}) => {
   const [newName, setNewName ] = useState("");
   const [newDate, setNewDate ] = useState(new Date());
   const [newLocationId, setNewLocationId ] = useState(1);
+  const [newCapacity, setNewCapacity ] = useState();
   const [newAbout, setNewAbout ] = useState("");
 
   const locations = useSelector((state) => (Object.values(state.locations)));
@@ -25,6 +26,7 @@ const CreateEventForm = ({group}) => {
   const updateDate = (e) => setNewDate(e.target.value);
   const updateLocation = (e) => setNewLocationId(e.target.value);
   const updateAbout = (e) => setNewAbout(e.target.value);
+  const updateCapacity = (e) => setNewCapacity(e.target.value);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -36,6 +38,7 @@ const CreateEventForm = ({group}) => {
         name: newName,
         date: newDate,
         about: newAbout,
+        capacity: 10,
         locationId: newLocationId,
         hostId: user.id,
         groupId: group?.id
@@ -63,30 +66,21 @@ const CreateEventForm = ({group}) => {
         <legend className={styles.legend}>Create your event</legend>
         <form className={styles.form} onSubmit={handleSubmit}>
           <div className={styles.valueContainers}>
-            <input className={styles.input}
+            <input className={`${styles.eventName} ${styles.input}`}
               type="text"
-              placeholder="New Event name"
+              placeholder="Name your event!"
               required
               value={newName}
               onChange={updateName}
             />
           </div>
-          <div className={styles.valueContainers}>
+          {/* <div className={styles.valueContainers}>
             <DateRangePickerComponent newDate={newDate} setNewDate={setNewDate} updateDate={updateDate}/>
-          </div>
-          <div className={styles.valueContainers}>
-            <select className={styles.select} onChange={updateLocation} defaultValue={newLocationId}>
-              {locations && locations.map((location) => (
-                <option key={location.id} value={location.id}>{location.name}</option>
-              ))}
-            </select>
-          </div>
-          <div className={styles.valueContainers}>
-            {/* <input type="number" min="0" max="9999"/> */}
-          </div>
+          </div> */}
+
           <div className={styles.valueContainers}>
             <textarea className={styles.textarea}
-              rows="10"
+              rows="6"
               cols="120"
               minlength="10"
               maxlength="2000"
@@ -95,6 +89,16 @@ const CreateEventForm = ({group}) => {
               value={newAbout}
               onChange={updateAbout}>
             </textarea>
+          </div>
+          <div className={styles.valueContainers}>
+            <input className={`${styles.capacity} ${styles.input}`} name="capacity" type="number" min="0" max="9999" onChange={updateCapacity} value={newCapacity} defaultValue={null} placeholder="Enter event capacity"/>
+            <div className={styles.valueContainers}>
+            <select className={styles.select} onChange={updateLocation} defaultValue={newLocationId}>
+              {locations && locations.map((location) => (
+                <option key={location.id} value={location.id}>{location.name}</option>
+              ))}
+            </select>
+          </div>
           </div>
           <div className={styles.buttonContainer}>
             <button className={`${styles.button} ${styles.cancel}`} type="button" onClick={handleCancelClick}>Cancel</button>

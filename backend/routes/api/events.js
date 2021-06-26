@@ -16,12 +16,9 @@ const validateEvent = [
   check("date")
     .exists({ checkFalsy: true })
     .withMessage("Please provide a date for this event."),
-  check("date")
-    .isDate("date", {
-      format: "MM/DD/YYYY",
-      strictMode: true,
-    })
-    .withMessage("Please provide a valid date format."),
+  // check("date")
+  //   .isDate()
+  //   .withMessage("Please provide a valid date format."),
   check("capacity")
     .exists({ checkFalsy: true })
     .withMessage("Please provide a number of guests."),

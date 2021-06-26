@@ -25,11 +25,11 @@ export default function GroupEventsList({group}) {
       </div>
       {/* <Route path='/events/create' */}
       {events.map((event) => {
-        if (event.group.id === group?.id) {
-          return <EventCard key={event.id} event={event}/>
+        if (event?.group?.id === group?.id) {
+          return <EventCard key={event?.id} event={event}/>
         }
       })}
-      { (events.filter((event)=> event.group.id === group?.id).length === 0) // this is the worst runtime. I'm so sorry.
+      { (events.filter((event)=> event?.group?.id === group?.id).length === 0) // this is the worst runtime. I'm so sorry.
       &&
       <p className={styles.noEventsText}>No upcoming events.</p>}
     </div>

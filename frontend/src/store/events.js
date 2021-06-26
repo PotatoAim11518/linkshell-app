@@ -11,9 +11,9 @@ const setEvents = (events) => ({
   events
 })
 
-const update = (events) => ({
+const update = (event) => ({
   type: UPDATE_EVENT,
-  events
+  event
 })
 
 const remove = (eventId) => ({
@@ -48,9 +48,9 @@ export const getHostEvents = (hostId, limit) => async (dispatch) => {
 
 export const createEvent = (data) => async (dispatch) => {
   console.log(data)
-  const response = await csrfFetch(`/api/events/`, {
+  const response = await csrfFetch('/api/events/create', {
     method: "POST",
-    body: JSON.stringify(data),
+    body: JSON.stringify(data)
   });
   if (response.ok) {
     const event = await response.json();
