@@ -11,6 +11,7 @@ import Homepage from '../src/components/Homepage';
 import DiscoverNav from '../src/components/DiscoverNav';
 import GroupPage from '../src/components/GroupPage';
 import CreateGroupForm from '../src/components/GroupCreation';
+import CreateEventForm from './components/EventCreationForm';
 import { restoreUser } from './store/session';
 
 function App() {
@@ -48,6 +49,9 @@ function App() {
           <Route path='/discover/events'>
             <DiscoverNav/>
             <EventsList />
+          </Route>
+          <Route path='/events/create'>
+            <CreateEventForm />
           </Route>
           <Route>
             <h1>Resource not Found</h1>

@@ -1,6 +1,10 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const UserGroup = sequelize.define('UserGroup', {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+    },
     userId: {
       type: DataTypes.INTEGER,
       allowNull: false,

@@ -5,6 +5,7 @@ import { useParams, Link, NavLink, Switch, Route } from "react-router-dom";
 import { getGroups, updateGroup, getGroup } from '../../store/groups';
 import { getGroupEvents } from '../../store/events';
 import { getTypes } from '../../store/types';
+import { getLocations } from '../../store/locations';
 import styles from './GroupPage.module.css';
 import About from "./About";
 import GroupEventsList from "./Events";

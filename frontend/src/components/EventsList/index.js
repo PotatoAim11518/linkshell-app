@@ -2,6 +2,7 @@
 import React, { useEffect }from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getEvents } from '../../store/events';
+import { getLocations } from "../../store/locations";
 // import { getTypes } from "../../store/types";
 import styles from './EventsList.module.css';
 import EventCard from "../EventCard";
@@ -12,6 +13,7 @@ const EventsList = () => {
 
   useEffect(() => {
     dispatch(getEvents());
+    dispatch(getLocations());
   }, [dispatch]);
 
   return (

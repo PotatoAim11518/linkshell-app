@@ -23,6 +23,10 @@ module.exports = (sequelize, DataTypes) => {
         min: 0
       }
     },
+    about: {
+      allowNull: false,
+      type: DataTypes.TEXT
+    },
     hostId: {
       type: DataTypes.INTEGER,
       allowNull: false,
