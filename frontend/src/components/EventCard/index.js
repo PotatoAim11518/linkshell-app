@@ -33,7 +33,7 @@ const EventCard = ({event}) => {
           <div className={styles.bottomRow}>
             <p className={styles.location}>{location.name}</p>
             <p className={styles.capacity}>{capacity} attendees</p>
-            <Link>Attend</Link>
+            <button>Attend</button>
           </div>
         </div>
       </div>
