@@ -17,8 +17,12 @@ module.exports = {
         type: Sequelize.DATE
       },
       capacity: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.INTEGER
+      },
+      about: {
+        allowNull: false,
+        type: Sequelize.TEXT
       },
       hostId: {
         allowNull: false,

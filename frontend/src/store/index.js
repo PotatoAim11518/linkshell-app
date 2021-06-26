@@ -6,6 +6,7 @@ import typesReducer from './types';
 import eventsReducer from './events';
 import userGroupsReducer from './userGroups';
 import RSVPsReducer from './rsvps';
+import locationsReducer from './locations';
 
 const rootReducer = combineReducers({
   session: sessionReducer,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   types: typesReducer,
   events: eventsReducer,
   userGroups: userGroupsReducer,
+  locations: locationsReducer,
   rsvps: RSVPsReducer,
 });
 

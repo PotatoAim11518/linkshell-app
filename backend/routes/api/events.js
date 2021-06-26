@@ -16,18 +16,18 @@ const validateEvent = [
   check("date")
     .exists({ checkFalsy: true })
     .withMessage("Please provide a date for this event."),
-  check("date")
-    .isDate("date", {
-      format: "MM/DD/YYYY",
-      strictMode: true,
-    })
-    .withMessage("Please provide a valid date format."),
+  // check("date")
+  //   .isDate()
+  //   .withMessage("Please provide a valid date format."),
   check("capacity")
     .exists({ checkFalsy: true })
     .withMessage("Please provide a number of guests."),
   check("capacity")
     .isInt({ min: 0, max: 9999 })
     .withMessage("Please provide a number of guests between 0 and 9999."),
+  check("about")
+    .isLength({ min: 10, max: 2000 })
+    .withMessage("Please provide a description between 10 and 2000 characters."),
   check("locationId")
     .exists({ checkFalsy: true })
     .withMessage("Please select a location for your event."),
@@ -116,10 +116,11 @@ router.get(
 
 // POST /   ---> Create new Event
 router.post(
-  "/",
+  "/create",
   validateEvent,
   requireAuth,
   asyncHandler(async (req, res, next) => {
+    console.log(req.body)
     const newEvent = await Event.create(req.body);
     return res.json(newEvent);
   })

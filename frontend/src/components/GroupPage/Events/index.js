@@ -6,6 +6,7 @@ import { getGroupEvents } from '../../../store/events';
 // import styles from '../../EventCard/EventCard.module.css';
 import styles from './Events.module.css';
 import EventCard from "../../EventCard";
+import CreateEventButton from "../../EventCreationForm/CreateEventButton";
 
 export default function GroupEventsList({group}) {
   const dispatch = useDispatch();
@@ -18,13 +19,17 @@ export default function GroupEventsList({group}) {
 
   return (
     <div className={styles.eventsList}>
-      <h2 className={styles.header}>Upcoming Events</h2>
+      <div className={styles.groupEventsHeader}>
+        <h2 className={styles.headerText}>Upcoming Events</h2>
+        <div className={styles.creationButton}><CreateEventButton /></div>
+      </div>
+      {/* <Route path='/events/create' */}
       {events.map((event) => {
-        if (event.group.id === group?.id) {
-          return <EventCard key={event.id} event={event}/>
+        if (event?.group?.id === group?.id) {
+          return <EventCard key={event?.id} event={event}/>
         }
       })}
-      { (events.filter((event)=> event.group.id === group?.id).length === 0) // this is the worst runtime. I'm so sorry.
+      { (events.filter((event)=> event?.group?.id === group?.id).length === 0) // this is the worst runtime. I'm so sorry.
       &&
       <p className={styles.noEventsText}>No upcoming events.</p>}
     </div>

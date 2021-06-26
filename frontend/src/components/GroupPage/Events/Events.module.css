@@ -1,3 +1,17 @@
+.groupEventsHeader {
+  width: 780px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  animation: wait 1s;
+}
+
+.headerText {
+  color: white;
+  font-weight: 400;
+  grid-area: text;
+}
+
 .eventsList {
   display: flex;
   flex-direction: column;
@@ -5,11 +19,6 @@
   align-items: flex-start;
   gap: 30px;
   padding: 0 80px;
-}
-
-.header {
-  color: white;
-  font-weight: 400;
 }
 
 .noEventsText {
