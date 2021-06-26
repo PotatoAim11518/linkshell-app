@@ -89,7 +89,7 @@ const CreateEventForm = ({group}) => {
               minuteAriaLabel="Minute"
               monthAriaLabel="Month"
               nativeInputAriaLabel="Date and time"
-              onChange={updateDate}
+              onChange={setNewDate}
               openWidgetsOnFocus="true"
               required
               secondAriaLabel="Second"
