@@ -43,9 +43,9 @@ router.get(
     const { limit } = req.body;
     const events = await Event.findAll({
       include: [
-        { model: User, attributes: ["username"] },
-        { model: Location, attributes: ["name", "locale"] },
-        { model: Group, attributes: ["name"] },
+        { model: User, as: "host", attributes: ["username"] },
+        { model: Location, as: "location", attributes: ["name", "locale"] },
+        { model: Group, as: "group", attributes: ["name"] },
       ],
       order: [["date", "DESC"]],
       limit,
@@ -61,9 +61,9 @@ router.get(
     const { id } = req.params;
     const events = await Event.findAll({
       include: [
-        { model: User, attributes: "username" },
-        { model: Location, attributes: ["name", "locale"] },
-        { model: Group, attributes: ["name"] },
+        { model: User, as: "host", attributes: ["username"] },
+        { model: Location, as: "location", attributes: ["name", "locale"] },
+        { model: Group, as: "group", attributes: ["id", "name"] },
       ],
     });
     res.json(events);
@@ -81,9 +81,31 @@ router.get(
         hostId: userId,
       },
       include: [
-        { model: User, attributes: ["username"] },
-        { model: Location, attributes: ["name", "locale"] },
-        { model: Group, attributes: ["name"] },
+        { model: User, as: "host", attributes: ["username"] },
+        { model: Location, as: "location", attributes: ["name", "locale"] },
+        { model: Group, as: "group", attributes: ["id", "name"] },
+      ],
+      order: [["date", "DESC"]],
+      limit,
+    });
+    res.json(events);
+  })
+);
+
+// GET / ---> Get one group's events
+router.get(
+  "/groups/:groupId",
+  asyncHandler(async (req, res, next) => {
+    const { groupId } = req.params;
+    const { limit } = req.body;
+    const events = await Event.findAll({
+      where: {
+        groupId
+      },
+      include: [
+        { model: User, as: "host", attributes: ["username"] },
+        { model: Location, as: "location", attributes: ["name", "locale"] },
+        { model: Group, as: "group", attributes: ["id", "name"] },
       ],
       order: [["date", "DESC"]],
       limit,

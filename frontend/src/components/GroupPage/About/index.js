@@ -1,6 +1,4 @@
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
 import styles from './About.module.css';
 import { getGroup } from '../../../store/groups'
 

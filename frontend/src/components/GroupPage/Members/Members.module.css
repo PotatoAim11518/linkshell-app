@@ -1,4 +1,4 @@
-.aboutHeader {
+.membersHeader {
   color: white;
   position: relative;
   text-align: left;
@@ -6,14 +6,14 @@
   animation: wait 0.5s;
 }
 
-.aboutText {
+.membersText {
   color: white;
   max-width: 600px;
   position: relative;
   font-weight: 100;
   text-align: left;
   left: 80px;
-  animation: wait 1.5s;
+  animation: wait 1s;
 }
 
 @keyframes wait {

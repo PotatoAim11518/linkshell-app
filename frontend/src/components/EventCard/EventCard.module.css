@@ -1,0 +1,99 @@
+.link {
+  text-decoration: none;
+}
+
+.eventCard {
+  display: flex;
+  max-width: 550px;
+  height: auto;
+  animation: transitionIn 1s;
+  /* border: 1px solid black; */
+}
+
+.image {
+  z-index: 50;
+  min-width: 260px;
+  height: 200px;
+  margin-bottom: 20px;
+  color: white;
+  background-color: black;
+  border-radius: 8px;
+}
+
+.eventInfo {
+  display: block;
+  position: relative;
+  min-width: 500px;
+  max-width: 500px;
+  left: -40px;
+  margin-left: 20px;
+  margin-top: 20px;
+  padding: 10px;
+  padding-left: 40px;
+  opacity: 0.9;
+  box-shadow: -2px 2px 6px 1px #111;
+  color: white;
+  background-color: #1e1f23;
+  border-radius: 8px;
+}
+
+.eventDateTime {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.groupName {
+  color: white;
+  text-align: end;
+  margin-top: 0;
+  font-size: 24px;
+}
+
+.divider {
+  background-color: red;
+  width: 100px;
+  height: 3px;
+  position: relative;
+  left: 220px;
+  top: -8px;
+  animation: wait 1.5s ease-in;
+}
+
+.eventTitle {
+  margin: 0;
+  font-weight: 600;
+}
+
+.capacity {
+  color: white;
+  text-align: end;
+}
+
+.bottomRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-right: 20px;
+}
+
+
+@keyframes transitionIn {
+  from {
+    opacity: 0.0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1.0;
+  }
+}
+
+@keyframes wait {
+  from {
+    transform: translateX(-600px);
+    width: 400px;
+  }
+  to {
+    transform: translateX(0px);
+    /* width: 200px; */
+  }
+}

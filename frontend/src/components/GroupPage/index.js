@@ -3,9 +3,12 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, Link, NavLink, Switch, Route } from "react-router-dom";
 import { getGroups, updateGroup, getGroup } from '../../store/groups';
+import { getGroupEvents } from '../../store/events';
 import { getTypes } from '../../store/types';
 import styles from './GroupPage.module.css';
 import About from "./About";
+import GroupEventsList from "./Events";
+import Members from "./Members";
 import EditGroupForm from './EditGroup';
 import DeleteGroup from './DeleteGroup';
 
@@ -22,6 +25,7 @@ const GroupPage = () => {
   useEffect(() => {
     dispatch(getGroups())
     dispatch(getTypes())
+    // dispatch(getGroupEvents(group?.id))
   },[dispatch])
 
 
@@ -66,10 +70,10 @@ const GroupPage = () => {
               <About group={group}/>
             </Route>
             <Route path={`/groups/${id}/events`}>
-              <p>Events Section</p>
+              <GroupEventsList group={group}/>
             </Route>
             <Route path={`/groups/${id}/members`}>
-              <p>Members Section</p>
+              <Members group={group}/>
             </Route>
             <Route path={`/groups/${id}/edit`}>
               <EditGroupForm group={group}/>

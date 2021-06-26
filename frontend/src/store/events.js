@@ -11,9 +11,9 @@ const setEvents = (events) => ({
   events
 })
 
-const update = (event) => ({
+const update = (events) => ({
   type: UPDATE_EVENT,
-  event
+  events
 })
 
 const remove = (eventId) => ({
@@ -31,13 +31,19 @@ export const getEvents = (limit) => async (dispatch) => {
 export const getEvent = (eventId) => async (dispatch) => {
   const response = await csrfFetch(`/api/events/${eventId}`);
   const event = await response.json();
-  dispatch(update(event));
+  dispatch(setEvents(event));
+}
+
+export const getGroupEvents = (groupId, limit) => async (dispatch) => {
+  const response = await csrfFetch(`/api/events/groups/${groupId}`, { limit });
+  const events = await response.json();
+  dispatch(setEvents(events));
 }
 
 export const getHostEvents = (hostId, limit) => async (dispatch) => {
   const response = await csrfFetch(`/api/events/user${hostId}`, { limit });
   const event = await response.json();
-  dispatch(update(event));
+  dispatch(setEvents(event));
 }
 
 export const createEvent = (data) => async (dispatch) => {
