@@ -47,6 +47,7 @@ export const getHostEvents = (hostId, limit) => async (dispatch) => {
 }
 
 export const createEvent = (data) => async (dispatch) => {
+  console.log(data)
   const response = await csrfFetch(`/api/events/`, {
     method: "POST",
     body: JSON.stringify(data),

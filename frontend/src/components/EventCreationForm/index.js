@@ -1,28 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { getGroup, getGroups, createGroup } from '../../store/groups';
+import { createEvent, getEvent } from '../../store/events';
 import { getLocations } from "../../store/locations";
 import DateRangePickerComponent from '../DatePicker';
 import 'react-nice-dates/build/style.css'
 import styles from './CreateEvent.module.css';
 
 
-const CreateEventForm = () => {
+const CreateEventForm = ({group}) => {
 
   const dispatch = useDispatch();
   const history = useHistory();
 
   const [newName, setNewName ] = useState("");
-  const [newAbout, setNewAbout ] = useState("");
+  const [newDate, setNewDate ] = useState(new Date());
   const [newLocationId, setNewLocationId ] = useState(1);
+  const [newAbout, setNewAbout ] = useState("");
 
   const locations = useSelector((state) => (Object.values(state.locations)));
   const user = useSelector((state) => (state.session.user));
 
   const updateName = (e) => setNewName(e.target.value);
-  const updateAbout = (e) => setNewAbout(e.target.value);
+  const updateDate = (e) => setNewDate(e.target.value);
   const updateLocation = (e) => setNewLocationId(e.target.value);
+  const updateAbout = (e) => setNewAbout(e.target.value);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,15 +34,16 @@ const CreateEventForm = () => {
     } else {
       const payload = {
         name: newName,
+        date: newDate,
         about: newAbout,
         locationId: newLocationId,
-        ownerId: user.id
+        hostId: user.id,
+        groupId: group?.id
       }
-      let newGroup = await dispatch(createGroup(payload))
-      if (newGroup) {
-        dispatch(getGroup(newGroup.id))
-        dispatch(getGroups())
-        history.push(`/groups/${newGroup.id}`)
+      let newEvent = await dispatch(createEvent(payload))
+      if (newEvent) {
+        dispatch(getEvent(newEvent.id));
+        history.push(`/events/${newEvent.id}`);
       }
     }
   }
@@ -58,8 +61,6 @@ const CreateEventForm = () => {
     <div className={styles.formContainer}>
       <fieldset className={styles.fieldset}>
         <legend className={styles.legend}>Create your event</legend>
-        {/* <input type="hidden" name="hostId" value={hostId}/>
-        <input type="hidden" name="hostId" value={groupId}/> */}
         <form className={styles.form} onSubmit={handleSubmit}>
           <div className={styles.valueContainers}>
             <input className={styles.input}
@@ -71,7 +72,14 @@ const CreateEventForm = () => {
             />
           </div>
           <div className={styles.valueContainers}>
-            <DateRangePickerComponent/>
+            <DateRangePickerComponent newDate={newDate} setNewDate={setNewDate} updateDate={updateDate}/>
+          </div>
+          <div className={styles.valueContainers}>
+            <select className={styles.select} onChange={updateLocation} defaultValue={newLocationId}>
+              {locations && locations.map((location) => (
+                <option key={location.id} value={location.id}>{location.name}</option>
+              ))}
+            </select>
           </div>
           <div className={styles.valueContainers}>
             {/* <input type="number" min="0" max="9999"/> */}
@@ -88,18 +96,10 @@ const CreateEventForm = () => {
               onChange={updateAbout}>
             </textarea>
           </div>
-          <div className={styles.valueContainers}>
-            <select className={styles.select} onChange={updateLocation} defaultValue={newLocationId}>
-              {locations && locations.map((location) => (
-                <option key={location.id} value={location.id}>{location.name}</option>
-              ))}
-            </select>
-          </div>
           <div className={styles.buttonContainer}>
             <button className={`${styles.button} ${styles.cancel}`} type="button" onClick={handleCancelClick}>Cancel</button>
             <button className={`${styles.button} ${styles.update}`} type="submit">Create</button>
           </div>
-
         </form>
       </fieldset>
     </div>
