@@ -22,5 +22,6 @@
   "bugs": {
     "url": "https://github.com/PotatoAim11518/authenticate-me/issues"
   },
-  "homepage": "https://github.com/PotatoAim11518/authenticate-me#readme"
+  "homepage": "https://github.com/PotatoAim11518/authenticate-me#readme",
+  "dependencies": {}
 }

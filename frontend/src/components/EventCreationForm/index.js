@@ -38,7 +38,7 @@ const CreateEventForm = ({group}) => {
         name: newName,
         date: newDate,
         about: newAbout,
-        capacity: 10,
+        capacity: newCapacity,
         locationId: newLocationId,
         hostId: user.id,
         groupId: group?.id
