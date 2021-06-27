@@ -1,7 +1,7 @@
 // frontend/src/App.js
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Route, Switch, NavLink } from 'react-router-dom';
+import { Route, Switch, NavLink, Redirect } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 
 import LoginFormPage from '../src/components/LoginFormPage';
@@ -46,6 +46,9 @@ function App() {
             <Helmet><title>Linkshell | Create a group</title></Helmet>
             <CreateGroupForm />
           </Route>
+          <Route exact path="/groups">
+            <Redirect to='/discover/groups'/>
+          </Route>
           <Route path="/groups/:id">
             <GroupPage />
           </Route>
@@ -53,6 +56,9 @@ function App() {
             <Helmet><title>Linkshell | Discover groups</title></Helmet>
             <DiscoverNav/>
             <GroupsList />
+          </Route>
+          <Route exact path="/events">
+            <Redirect to='/discover/events'/>
           </Route>
           <Route path='/discover/events'>
             <Helmet><title>Linkshell | Discover events</title></Helmet>
