@@ -120,7 +120,6 @@ router.post(
   validateEvent,
   requireAuth,
   asyncHandler(async (req, res, next) => {
-    console.log(req.body)
     const newEvent = await Event.create(req.body);
     return res.json(newEvent);
   })

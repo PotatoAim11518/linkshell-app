@@ -1,11 +1,12 @@
 // frontend/src/components/GroupPage/index.js
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams, Link, NavLink, Switch, Route } from "react-router-dom";
+import { useParams, Link, NavLink, Switch, Route, useHistory } from "react-router-dom";
 import { Helmet } from 'react-helmet';
 
 import { getGroups, updateGroup, getGroup } from '../../store/groups';
 import { getGroupEvents } from '../../store/events';
+import { getUserGroups } from "../../store/userGroups";
 import { getTypes } from '../../store/types';
 import { getLocations } from '../../store/locations';
 
@@ -15,6 +16,7 @@ import Members from "./Members";
 import EditGroupForm from './EditGroup';
 import DeleteGroup from './DeleteGroup';
 import CreateEventForm from '../EventCreationForm';
+import GroupJoinLeaveButton from '../GroupJoinLeaveButton';
 
 import styles from './GroupPage.module.css';
 
@@ -22,9 +24,14 @@ const GroupPage = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
 
+  const history = useHistory();
+
+  const [isMember, setIsMember] = useState(false);
+
   const groups = useSelector((state) => state?.groups);
   const types = useSelector((state) => state.types);
   const user = useSelector((state) => state.session.user);
+  const userGroups = useSelector((state) => state.userGroups);
 
   const group = groups[id]
 
@@ -32,7 +39,8 @@ const GroupPage = () => {
     dispatch(getGroups())
     dispatch(getTypes())
     dispatch(getGroupEvents(group?.id))
-  },[dispatch, group?.id])
+    dispatch(getUserGroups(user?.id))
+  },[dispatch, group?.id, user?.id])
 
 
   return (
@@ -69,6 +77,7 @@ const GroupPage = () => {
               </NavLink>
             </>
           )}
+          <GroupJoinLeaveButton group={group} isMember={isMember} setIsMember={setIsMember}/>
           <div className={styles.groupType}>
             {group?.Type?.name}
           </div>
@@ -79,8 +88,7 @@ const GroupPage = () => {
               <About group={group}/>
             </Route>
             <Route path={`/groups/${id}/events`}>
-              <CreateEventForm group={group}/>
-              <GroupEventsList group={group}/>
+              <GroupEventsList group={group} isMember={isMember}/>
             </Route>
             <Route path={`/groups/${id}/members`}>
               <Members group={group}/>

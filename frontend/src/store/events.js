@@ -47,7 +47,6 @@ export const getHostEvents = (hostId, limit) => async (dispatch) => {
 }
 
 export const createEvent = (data) => async (dispatch) => {
-  console.log(data)
   const response = await csrfFetch('/api/events/create', {
     method: "POST",
     body: JSON.stringify(data)
@@ -85,7 +84,6 @@ const initialState = {};
 const eventsReducer = (state=initialState, action) => {
   switch(action.type) {
     case SET_EVENTS:
-      console.log(action.events)
       const allEvents = {};
       action.events.forEach((event) => {
         allEvents[event.id] = event;
