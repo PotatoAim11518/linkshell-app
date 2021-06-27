@@ -2,8 +2,10 @@
 module.exports = (sequelize, DataTypes) => {
   const RSVP = sequelize.define('RSVP', {
     id: {
+      allowNull: false,
       type: DataTypes.INTEGER,
       primaryKey: true,
+      autoIncrement: true,
     },
     userId: {
       type: DataTypes.INTEGER,
