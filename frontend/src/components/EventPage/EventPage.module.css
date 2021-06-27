@@ -86,6 +86,22 @@
   border-bottom: 2px solid red;
 }
 
+.belowNav {
+  display: grid;
+  grid-template:
+    "info group"
+    "info RSVP" 50vh / 60% 40%
+}
+
+.info {
+  grid-area: info;
+}
+
+.groupCard {
+  padding-top: 20px;
+  grid-area: group;
+}
+
 @keyframes wait {
   from {
     transform: translateX(-600px);

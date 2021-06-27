@@ -1,41 +1,87 @@
-.groupEventsHeader {
-  width: 780px;
+.link {
+  text-decoration: none;
+}
+
+.groupCard {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  animation: wait 1s;
+  max-width: 550px;
+  height: auto;
+  animation: transitionIn 1s;
+  /* border: 1px solid black; */
 }
 
-.headerText {
+.image {
+  z-index: 50;
+  min-width: 260px;
+  height: 200px;
+  margin-bottom: 20px;
   color: white;
-  font-weight: 400;
-  grid-area: text;
+  background-color: black;
+  border-radius: 8px;
 }
 
-.eventsList {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  gap: 30px;
-  padding: 0 80px;
-}
-
-.noEventsText {
+.groupInfo {
+  display: block;
+  position: relative;
+  min-width: 500px;
+  max-width: 500px;
+  left: -40px;
+  margin-left: 20px;
+  margin-top: 20px;
+  padding: 10px;
+  padding-left: 40px;
+  opacity: 0.9;
+  box-shadow: -2px 2px 6px 1px #111;
   color: white;
-  font-size: 18px;
-  font-weight: 100;
-  text-align: left;
-  left: 80px;
-  animation: wait 1.5s;
+  background-color: #1e1f23;
+  border-radius: 8px;
+}
+
+.groupTitle {
+
+}
+
+.divider {
+  background-color: red;
+  width: 100px;
+  height: 3px;
+  position: relative;
+  left: 220px;
+  top: -8px;
+  animation: wait 1.5s ease-in;
+}
+
+.typeName {
+  color: white;
+  text-align: end;
+  margin-top: 0;
+}
+
+.about {
+
+}
+
+.owner {
+
+}
+
+@keyframes transitionIn {
+  from {
+      opacity: 0.0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1.0;
+  }
 }
 
 @keyframes wait {
   from {
-    opacity: 0.0;
-    transform: translateX(10px);
+    transform: translateX(-600px);
+    width: 400px;
   }
   to {
-    opacity: 1.0;
+    transform: translateX(0px);
+    /* width: 200px; */
   }
 }

@@ -8,7 +8,7 @@ import { getEvent, getGroupEvents } from '../../store/events';
 import { getGroup } from '../../store/groups';
 
 import styles from './EventPage.module.css';
-import GroupCard from '../GroupCard';
+import EventGroupCard from './Group';
 import Details from "./Details";
 import Attendees from "./Attendees";
 import EditEvent from './EditEvent';
@@ -19,9 +19,8 @@ const EventPage = () => {
   const dispatch = useDispatch();
 
   const user = useSelector((state) => state.session.user);
-  const groups = useSelector((state) => state.groups);
   const events = useSelector((state) => state.events);
-  const types = useSelector((state) => state.types);
+  const groups = useSelector((state) => state.groups);
 
   const event = events[eventId]
   const group = groups[event?.group?.id]
@@ -29,9 +28,9 @@ const EventPage = () => {
   useEffect(() => {
     dispatch(getEvent(eventId))
     dispatch(getGroup(group?.id))
-    // dispatch(getTypes())
     dispatch(getGroupEvents(group?.id))
-  },[dispatch, eventId])
+    // dispatch(getTypes())
+  },[dispatch, eventId, group?.id])
 
 
   return (
@@ -63,26 +62,27 @@ const EventPage = () => {
               </NavLink>
             </>
           )}
-          <div className={styles.groupCard}>
-            <h2>Group Card Placeholder</h2>
-            {/* <GroupCard group={group}/> */}
-          </div>
         </nav>
-        <div className={styles.info}>
-          <Switch>
-            <Route exact path={`/events/${eventId}`}>
-              <Details event={event}/>
-            </Route>
-            <Route path={`/events/${eventId}/attendees`}>
-              <Attendees event={event}/>
-            </Route>
-            <Route path={`/events/${eventId}/edit`}>
-              <EditEvent event={event}/>
-            </Route>
-            <Route path={`/events/${eventId}/delete`}>
-              <DeleteEvent event={event}/>
-            </Route>
-          </Switch>
+        <div className={styles.belowNav}>
+          <div className={styles.info}>
+            <Switch>
+              <Route exact path={`/events/${eventId}`}>
+                <Details event={event}/>
+              </Route>
+              <Route path={`/events/${eventId}/attendees`}>
+                <Attendees event={event}/>
+              </Route>
+              <Route path={`/events/${eventId}/edit`}>
+                <EditEvent event={event}/>
+              </Route>
+              <Route path={`/events/${eventId}/delete`}>
+                <DeleteEvent event={event}/>
+              </Route>
+            </Switch>
+          </div>
+          <div className={styles.groupCard}>
+            <EventGroupCard event={event}/>
+          </div>
         </div>
       </div>
     </>

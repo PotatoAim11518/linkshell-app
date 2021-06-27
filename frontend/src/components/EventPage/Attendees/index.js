@@ -5,7 +5,7 @@ import { getEvent } from '../../../store/events'
 export default function Attendees({event}) {
 
   useEffect(() => {
-    getEvent(event.id)
+    getEvent(event?.id)
   },[event])
 
   return (

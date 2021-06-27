@@ -1,35 +1,39 @@
-// frontend/src/components/GroupsList/index.js
-import React, { useEffect }from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { getGroupEvents } from '../../../store/events';
-import styles from './Events.module.css';
-import EventCard from "../../EventCard";
-import CreateEventButton from "../../EventCreationForm/CreateEventButton";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useParams } from "react-router-dom";
 
-export default function GroupEventsList({group}) {
+import styles from './Group.module.css';
+import { getEvent } from '../../../store/events';
+
+const EventGroupCard = () => {
+  const { eventId } = useParams();
+
   const dispatch = useDispatch();
+  const events = useSelector((state) => state.events)
+  const event = events[eventId]
 
-  useEffect(() => {
-    dispatch(getGroupEvents(group?.id));
-  }, [dispatch, group]);
-
-  const events = useSelector((state) => Object.values(state.events));
+  useEffect(()=> {
+    dispatch(getEvent(eventId))
+  },[dispatch, eventId])
 
   return (
-    <div className={styles.eventsList}>
-      <div className={styles.groupEventsHeader}>
-        <h2 className={styles.headerText}>Upcoming Events</h2>
-        <div className={styles.creationButton}><CreateEventButton /></div>
+    <Link className={styles.link} to={`/groups/${event?.groupId}`}>
+      <div className={styles.groupCard}>
+        <div className={styles.image}>
+          Image Placeholder
+          ImageId: {event?.groupId}
+        </div>
+        <div className={styles.groupInfo}>
+          <div>
+            <span className={styles.divider}>
+              <div className={styles.divider}></div>
+            </span>
+          </div>
+          <h2 className={styles.groupTitle}>{event?.group?.name}</h2>
+        </div>
       </div>
-      {/* <Route path='/events/create' */}
-      {events.map((event) => {
-        if (event?.group?.id === group?.id) {
-          return <EventCard key={event?.id} event={event}/>
-        }
-      })}
-      { (events.filter((event)=> event?.group?.id === group?.id).length === 0) // this is the worst runtime. I'm so sorry.
-      &&
-      <p className={styles.noEventsText}>No upcoming events.</p>}
-    </div>
+    </Link>
   )
 }
+
+export default EventGroupCard;
