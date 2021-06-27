@@ -29,7 +29,6 @@ const EventGroupCard = () => {
           </div>
         </div>
       </Link>
-      <div className={styles.divider}></div>
     </>
   )
 }
