@@ -7,7 +7,7 @@ const EventCard = ({event}) => {
   const { id, name, date, capacity, host, location, group } = event;
   const dateObj = new Date(date);
   const dateOptions = { weekday: 'short', month: 'short', day: 'numeric' }
-  const timeOptions = { timeZone: 'PST', timeZoneName: 'short' }
+  const timeOptions = { timeStyle: 'short'}
   const dateString = dateObj.toLocaleDateString("en-US", dateOptions);
   const timeString = dateObj.toLocaleTimeString("en-US", timeOptions);
 

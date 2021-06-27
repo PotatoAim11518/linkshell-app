@@ -8,11 +8,12 @@ import { getEvent, getGroupEvents } from '../../store/events';
 import { getGroup } from '../../store/groups';
 
 import styles from './EventPage.module.css';
-import EventGroupCard from './Group';
 import Details from "./Details";
 import Attendees from "./Attendees";
 import EditEvent from './EditEvent';
 import DeleteEvent from './DeleteEvent';
+import EventGroupCard from './Group';
+import RSVPInfo from './RSVPInfo';
 
 const EventPage = () => {
   const { eventId } = useParams();
@@ -35,7 +36,7 @@ const EventPage = () => {
 
   return (
     <>
-      <Helmet><title>{`${group?.name} | ${event?.name}`}</title></Helmet>
+      <Helmet><title>{`${event?.group?.name} | ${event?.name}`}</title></Helmet>
       <div className={styles.pageContainer}>
         <h2 className={styles.eventName}>{event?.name}</h2>
         <div className={styles.divider}></div>
@@ -82,6 +83,9 @@ const EventPage = () => {
           </div>
           <div className={styles.groupCard}>
             <EventGroupCard event={event}/>
+          </div>
+          <div className={styles.RSVPInfo}>
+            <RSVPInfo event={event}/>
           </div>
         </div>
       </div>

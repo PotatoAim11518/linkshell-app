@@ -89,12 +89,16 @@
 .belowNav {
   display: grid;
   grid-template:
-    "info group"
-    "info RSVP" 50vh / 60% 40%
+    "info group" 180px
+    "info RSVP" 800px / 60% 40%
 }
 
 .info {
   grid-area: info;
+}
+
+.RSVPInfo {
+  grid-area: RSVP;
 }
 
 .groupCard {

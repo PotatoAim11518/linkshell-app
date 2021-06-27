@@ -17,22 +17,20 @@ const EventGroupCard = () => {
   },[dispatch, eventId])
 
   return (
-    <Link className={styles.link} to={`/groups/${event?.groupId}`}>
-      <div className={styles.groupCard}>
-        <div className={styles.image}>
-          Image Placeholder
-          ImageId: {event?.groupId}
-        </div>
-        <div className={styles.groupInfo}>
-          <div>
-            <span className={styles.divider}>
-              <div className={styles.divider}></div>
-            </span>
+    <>
+      <Link className={styles.link} to={`/groups/${event?.groupId}`}>
+        <div className={styles.groupCard}>
+          <div className={styles.groupInfo}>
+            <h2 className={styles.groupTitle}>{event?.group?.name}</h2>
           </div>
-          <h2 className={styles.groupTitle}>{event?.group?.name}</h2>
+          <div className={styles.image}>
+            Image Placeholder
+            ImageId: {event?.groupId}
+          </div>
         </div>
-      </div>
-    </Link>
+      </Link>
+      <div className={styles.divider}></div>
+    </>
   )
 }
 
