@@ -31,7 +31,7 @@ export const getEvents = (limit) => async (dispatch) => {
 export const getEvent = (eventId) => async (dispatch) => {
   const response = await csrfFetch(`/api/events/${eventId}`);
   const event = await response.json();
-  dispatch(setEvents([event]));
+  dispatch(setEvents(event));
 }
 
 export const getGroupEvents = (groupId, limit) => async (dispatch) => {
