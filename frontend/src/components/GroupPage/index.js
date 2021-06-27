@@ -6,6 +6,7 @@ import { Helmet } from 'react-helmet';
 
 import { getGroups, updateGroup, getGroup } from '../../store/groups';
 import { getGroupEvents } from '../../store/events';
+import { getUserGroups } from '../../store/userGroups';
 import { getTypes } from '../../store/types';
 import { getLocations } from '../../store/locations';
 
@@ -15,6 +16,7 @@ import Members from "./Members";
 import EditGroupForm from './EditGroup';
 import DeleteGroup from './DeleteGroup';
 import CreateEventForm from '../EventCreationForm';
+import JoinLeaveButton from '../GroupJoinLeaveButton';
 
 import styles from './GroupPage.module.css';
 
@@ -32,7 +34,8 @@ const GroupPage = () => {
     dispatch(getGroups())
     dispatch(getTypes())
     dispatch(getGroupEvents(group?.id))
-  },[dispatch, group?.id])
+    dispatch(getUserGroups(user?.id))
+  },[dispatch, group?.id, user?.id])
 
 
   return (
@@ -69,6 +72,7 @@ const GroupPage = () => {
               </NavLink>
             </>
           )}
+          <JoinLeaveButton groups={groups}/>
           <div className={styles.groupType}>
             {group?.Type?.name}
           </div>

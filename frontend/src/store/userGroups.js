@@ -19,13 +19,14 @@ const leave = (userGroupId) => ({
   userGroupId
 })
 
-export const getUserGroups = (limit, userId) => async (dispatch) => {
+export const getUserGroups = (userId, limit) => async (dispatch) => {
   const response = await csrfFetch(`/api/groups/user/${userId}`, {limit});
   const userGroups = await response.json();
   dispatch(setUserGroups(userGroups));
+  return userGroups;
 }
 
-export const joinUserGroup = (groupId, userId) => async dispatch => {
+export const joinUserGroup = (userId, groupId) => async dispatch => {
   const response = await csrfFetch(`/api/groups/${groupId}/join`, {
     method: "POST",
     body: JSON.stringify({
@@ -48,6 +49,7 @@ export const leaveUserGroup = (groupId, userId) => async dispatch => {
   if (response.ok) {
     const deleteUserGroup = await response.json();
     dispatch(leave(deleteUserGroup.id));
+    return deleteUserGroup;
   }
 }
 
