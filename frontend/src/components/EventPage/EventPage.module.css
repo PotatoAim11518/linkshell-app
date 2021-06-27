@@ -89,7 +89,7 @@
 .belowNav {
   display: grid;
   grid-template:
-    "info group" 180px
+    "info group" 360px
     "info RSVP" 800px / 60% 40%
 }
 
@@ -97,13 +97,39 @@
   grid-area: info;
 }
 
-.RSVPInfo {
-  grid-area: RSVP;
-}
-
 .groupCard {
   padding-top: 20px;
+  position: sticky;
+  top: 40px;
   grid-area: group;
+}
+
+.RSVPInfo {
+  margin: 30px 0;
+  /* position: sticky;
+  top: 220px; */
+  grid-area: group;
+}
+
+.widgetDivider {
+  background-color: red;
+  width: 3px;
+  height: 90px;
+  position: relative;
+  left: 300px;
+  top: -350px;
+  animation: widgetDivider 2s ease-in;
+}
+
+@keyframes widgetDivider {
+  from {
+    transform: translateY(300px);
+    height: 300px;
+  }
+  to {
+    transform: translateY(0px);
+    /* width: 200px; */
+  }
 }
 
 @keyframes wait {

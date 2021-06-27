@@ -83,10 +83,11 @@ const EventPage = () => {
           </div>
           <div className={styles.groupCard}>
             <EventGroupCard event={event}/>
+            <div className={styles.RSVPInfo}>
+              <RSVPInfo event={event}/>
+            </div>
           </div>
-          <div className={styles.RSVPInfo}>
-            <RSVPInfo event={event}/>
-          </div>
+          <div className={styles.widgetDivider}></div>
         </div>
       </div>
     </>
