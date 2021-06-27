@@ -1,75 +1,79 @@
 import { csrfFetch } from "./csrf";
 
-const SET_USERGROUPS = 'usergroups/SET_USERGROUPS';
-const JOIN_USERGROUP = 'usergroups/JOIN_USERGROUP';
-const LEAVE_USERGROUP = 'usergroups/LEAVE_USERGROUP';
+const SET_USERGROUPS = "usergroups/SET_USERGROUPS";
+const JOIN_USERGROUP = "usergroups/JOIN_USERGROUP";
+const LEAVE_USERGROUP = "usergroups/LEAVE_USERGROUP";
 
 const setUserGroups = (userGroups) => ({
   type: SET_USERGROUPS,
-  userGroups
-})
+  userGroups,
+});
 
 const join = (userGroup) => ({
   type: JOIN_USERGROUP,
-  userGroup
-})
+  userGroup,
+});
 
 const leave = (userGroupId) => ({
   type: LEAVE_USERGROUP,
-  userGroupId
-})
+  userGroupId,
+});
 
-export const getUserGroups = (limit, userId) => async (dispatch) => {
-  const response = await csrfFetch(`/api/groups/user/${userId}`, {limit});
+export const getUserGroups = (userId) => async (dispatch) => {
+  const response = await csrfFetch(`/api/usergroups/user/${userId}`);
   const userGroups = await response.json();
   dispatch(setUserGroups(userGroups));
-}
+};
 
-export const joinUserGroup = (groupId, userId) => async dispatch => {
-  const response = await csrfFetch(`/api/groups/${groupId}/join`, {
+export const joinUserGroup = (userId, groupId) => async (dispatch) => {
+  const response = await csrfFetch(`/api/usergroups`, {
     method: "POST",
     body: JSON.stringify({
       userId,
-      groupId
-    })
+      groupId,
+    }),
   });
   if (response.ok) {
     const newUserGroup = await response.json();
     dispatch(join(newUserGroup));
     return newUserGroup;
   }
-}
+};
 
-export const leaveUserGroup = (groupId, userId) => async dispatch => {
-  const response = await csrfFetch(`/api/groups/${groupId}/leave`, {
-    method: "DELETE"
+export const leaveUserGroup = (userId, groupId) => async (dispatch) => {
+  const response = await csrfFetch(`/api/usergroups`, {
+    method: "DELETE",
+    body: JSON.stringify({
+      userId,
+      groupId,
+    }),
   });
 
   if (response.ok) {
     const deleteUserGroup = await response.json();
     dispatch(leave(deleteUserGroup.id));
   }
-}
+};
 
-const initialState = {}
+const initialState = {};
 
-const userGroupsReducer = (state=initialState, action) => {
-  switch(action.type) {
+const userGroupsReducer = (state = initialState, action) => {
+  switch (action.type) {
     case SET_USERGROUPS:
-      const allUserGroups = {}
+      const allUserGroups = {};
       action.userGroups.forEach((userGroup) => {
         allUserGroups[userGroup.id] = userGroup;
       });
-      return {...state, ...allUserGroups};
+      return { ...state, ...allUserGroups };
     case JOIN_USERGROUP:
-      return {...state, [action.userGroup.id]: action.userGroup}
+      return { ...state, [action.userGroup.id]: action.userGroup };
     case LEAVE_USERGROUP:
-      const newState = {...state}
-      delete newState[action.userGroupId]
+      const newState = { ...state };
+      delete newState[action.userGroupId];
       return newState;
     default:
       return state;
   }
-}
+};
 
 export default userGroupsReducer;

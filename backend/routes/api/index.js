@@ -1,25 +1,27 @@
 // backend/routes/api/index.js
-const router = require('express').Router();
-const asyncHandler = require('express-async-handler');
+const router = require("express").Router();
+const asyncHandler = require("express-async-handler");
 
-const { setTokenCookie } = require('../../utils/auth.js');
-const { User } = require('../../db/models');
-const { restoreUser } = require('../../utils/auth.js');
-const { requireAuth } = require('../../utils/auth.js');
+const { setTokenCookie } = require("../../utils/auth.js");
+const { User } = require("../../db/models");
+const { restoreUser } = require("../../utils/auth.js");
+const { requireAuth } = require("../../utils/auth.js");
 
-const sessionRouter = require('./session');
-const usersRouter = require('./users');
-const groupsRouter = require('./groups');
-const typesRouter = require('./types');
-const eventsRouter = require('./events');
-const locationsRouter = require('./locations');
+const sessionRouter = require("./session");
+const usersRouter = require("./users");
+const groupsRouter = require("./groups");
+const typesRouter = require("./types");
+const eventsRouter = require("./events");
+const locationsRouter = require("./locations");
+const userGroupsRouter = require("./usergroups");
 
-router.use('/session', sessionRouter);
-router.use('/users', usersRouter);
-router.use('/groups', groupsRouter);
-router.use('/types', typesRouter);
-router.use('/events', eventsRouter);
-router.use('/locations', locationsRouter);
+router.use("/session", sessionRouter);
+router.use("/users", usersRouter);
+router.use("/groups", groupsRouter);
+router.use("/types", typesRouter);
+router.use("/events", eventsRouter);
+router.use("/locations", locationsRouter);
+router.use("/usergroups", userGroupsRouter);
 
 // -----TEST ROUTES FOR MIDDLEWARE-----
 // // GET /api/set-token-cookie
@@ -51,8 +53,8 @@ router.use('/locations', locationsRouter);
 //   }
 // );
 
-router.post('/test', (req, res) => {
-  res.json({requestBody: req.body})
-})
+router.post("/test", (req, res) => {
+  res.json({ requestBody: req.body });
+});
 
 module.exports = router;

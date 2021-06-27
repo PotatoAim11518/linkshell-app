@@ -15,7 +15,7 @@ export default function JoinLeaveButton({ group }) {
   const userGroups = useSelector((state) => Object.values(state.userGroups));
 
   useEffect(() => {
-    dispatch(getUserGroups(user?.id))
+    // dispatch(getUserGroups(user?.id))
     userGroups.forEach((userGroup) => {
       if (userGroup?.groupId === group?.id && userGroup?.userId === user?.id) {
         setIsMember(true)
