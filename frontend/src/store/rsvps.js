@@ -19,14 +19,14 @@ const remove = (rsvpId) => ({
   rsvpId
 })
 
-export const getRSVPs = (limit, userId) => async (dispatch) => {
-  const response = await csrfFetch(`/api/events/user/${userId}`, {limit});
+export const getRSVPs = (userId) => async (dispatch) => {
+  const response = await csrfFetch(`/api/rsvps/user/${userId}`);
   const RSVPs = await response.json();
   dispatch(setRSVPs(RSVPs));
 }
 
-export const addRSVP = (eventId, userId) => async dispatch => {
-  const response = await csrfFetch(`/api/groups/${eventId}/join`, {
+export const addRSVP = (userId, eventId) => async dispatch => {
+  const response = await csrfFetch(`/api/rsvps`, {
     method: "POST",
     body: JSON.stringify({
       userId,
@@ -40,9 +40,13 @@ export const addRSVP = (eventId, userId) => async dispatch => {
   }
 }
 
-export const removeRSVP = (groupId, userId) => async dispatch => {
-  const response = await csrfFetch(`/api/groups/${groupId}/leave`, {
-    method: "DELETE"
+export const removeRSVP = (userId, eventId) => async dispatch => {
+  const response = await csrfFetch(`/api/rsvps`, {
+    method: "DELETE",
+    body: JSON.stringify({
+      userId,
+      eventId,
+    }),
   });
 
   if (response.ok) {
