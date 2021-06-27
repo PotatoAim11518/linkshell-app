@@ -31,7 +31,7 @@ export const getEvents = (limit) => async (dispatch) => {
 export const getEvent = (eventId) => async (dispatch) => {
   const response = await csrfFetch(`/api/events/${eventId}`);
   const event = await response.json();
-  dispatch(setEvents(event));
+  dispatch(setEvents([event]));
 }
 
 export const getGroupEvents = (groupId, limit) => async (dispatch) => {
@@ -42,8 +42,8 @@ export const getGroupEvents = (groupId, limit) => async (dispatch) => {
 
 export const getHostEvents = (hostId, limit) => async (dispatch) => {
   const response = await csrfFetch(`/api/events/user${hostId}`, { limit });
-  const event = await response.json();
-  dispatch(setEvents(event));
+  const events = await response.json();
+  dispatch(setEvents(events));
 }
 
 export const createEvent = (data) => async (dispatch) => {
@@ -72,10 +72,11 @@ export const updateEvent = (data, eventId) => async (dispatch) => {
 }
 
 export const deleteEvent = (eventId) => async (dispatch) => {
-  const response = await csrfFetch(`/api/events/${eventId}`);
+  const response = await csrfFetch(`/api/events/${eventId}`, {
+    method: "DELETE"
+  });
   if (response.ok) {
-    const event = response.json();
-    dispatch(remove(event));
+    dispatch(remove(eventId));
   }
 }
 
@@ -84,6 +85,7 @@ const initialState = {};
 const eventsReducer = (state=initialState, action) => {
   switch(action.type) {
     case SET_EVENTS:
+      console.log(action.events)
       const allEvents = {};
       action.events.forEach((event) => {
         allEvents[event.id] = event;
@@ -93,7 +95,7 @@ const eventsReducer = (state=initialState, action) => {
       return {...state, [action.event.id]: action.event};
     case REMOVE_EVENT:
       const newState = {...state};
-      delete newState.action.eventId;
+      delete newState[action.eventId];
       return newState
     default:
       return state;

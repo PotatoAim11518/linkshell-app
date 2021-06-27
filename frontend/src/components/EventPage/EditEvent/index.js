@@ -3,26 +3,26 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import DateTimePicker from 'react-datetime-picker'
 
-import { createEvent, getEvent } from '../../store/events';
-import { getLocations } from "../../store/locations";
-import styles from './CreateEvent.module.css';
+import { updateEvent, getEvent } from '../../../store/events';
+import { getLocations } from "../../../store/locations";
+import styles from './EditEvent.module.css';
 import './DateTimePicker.css';
 import './Clock.css';
 import './Calendar.css';
 
-const CreateEventForm = ({group}) => {
+const EditEvent = ({event}) => {
 
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const [newName, setNewName ] = useState("");
-  const [newDate, setNewDate ] = useState(new Date());
-  const [newAbout, setNewAbout ] = useState("");
-  const [newCapacity, setNewCapacity ] = useState();
-  const [newLocationId, setNewLocationId ] = useState(1);
+  const [newName, setNewName ] = useState(event?.name);
+  const [newDate, setNewDate ] = useState(event?.date);
+  const [newAbout, setNewAbout ] = useState(event?.about);
+  const [newCapacity, setNewCapacity ] = useState(event?.capacity);
+  const [newLocationId, setNewLocationId ] = useState(event?.location?.id);
 
-  const locations = useSelector((state) => (Object.values(state.locations)));
   const user = useSelector((state) => (state.session.user));
+  const locations = useSelector((state) => (Object.values(state.locations)));
 
   const updateName = (e) => setNewName(e.target.value);
   const updateAbout = (e) => setNewAbout(e.target.value);
@@ -42,12 +42,12 @@ const CreateEventForm = ({group}) => {
         about: newAbout,
         hostId: user.id,
         locationId: newLocationId,
-        groupId: group?.id
+        // groupId: group?.id
       }
-      let newEvent = await dispatch(createEvent(payload))
-      if (newEvent) {
-        dispatch(getEvent(newEvent.id));
-        history.push(`/events/${newEvent.id}`);
+      let updatedEvent = await dispatch(updateEvent(payload, event?.id))
+      if (updatedEvent) {
+        dispatch(getEvent(updatedEvent.id));
+        history.push(`/events/${updatedEvent.id}`);
       }
     }
   }
@@ -58,13 +58,18 @@ const CreateEventForm = ({group}) => {
   }
 
   useEffect(() => {
+    setNewName(event?.name)
+    setNewDate(event?.date)
+    setNewAbout(event?.about)
+    setNewCapacity(event?.capacity)
+    setNewLocationId(event?.location?.id)
     dispatch(getLocations());
-  }, [dispatch]);
+  }, [dispatch, event]);
 
   return (
     <div className={styles.formContainer}>
       <fieldset className={styles.fieldset}>
-        <legend className={styles.legend}>Create your event</legend>
+        <legend className={styles.legend}>Edit your event</legend>
         <form className={styles.form} onSubmit={handleSubmit}>
           <div className={styles.valueContainers}>
             <input className={`${styles.eventName} ${styles.input}`}
@@ -122,7 +127,7 @@ const CreateEventForm = ({group}) => {
           </div>
           <div className={styles.buttonContainer}>
             <button className={`${styles.button} ${styles.cancel}`} type="button" onClick={handleCancelClick}>Cancel</button>
-            <button className={`${styles.button} ${styles.update}`} type="submit">Create</button>
+            <button className={`${styles.button} ${styles.update}`} type="submit">Update</button>
           </div>
         </form>
       </fieldset>
@@ -130,4 +135,4 @@ const CreateEventForm = ({group}) => {
   )
 }
 
-export default CreateEventForm;
+export default EditEvent;

@@ -1,24 +1,17 @@
-.formContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 80vh;
-}
-
 .fieldset {
   color: white;
   font-weight: 400;
   max-width: 600px;
   padding: 20px;
   margin: 20px 80px;
-  animation: wait 0.5s;
   border-radius: 8px;
+  animation: wait 0.5s;
 }
 
 .input {
   font-family: 'Raleway', sans-serif;
   font-size: 26px;
-  min-width: 95%;
+  min-width: 200px;
   padding: 5px;
   margin: 10px;
   border: none;

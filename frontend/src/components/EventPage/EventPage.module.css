@@ -1,4 +1,4 @@
-.groupName, .groupOwner {
+.eventName, .eventHost {
   color: white;
   position: relative;
   text-align: left;
@@ -6,27 +6,26 @@
   animation: wait 1.5s;
 }
 
-.groupName {
+.eventName {
   font-size: 40px;
   left: 200px;
 }
 
-.groupOwner {
+.eventHost {
   font-size: 20px;
   font-weight: 100;
 }
 
-.groupType {
-  z-index: 999;
+.eventType {
   color: white;
   position: relative;
   font-size: 45px;
   right: -20vw;
-  bottom: -25px;
+  bottom: 30px;
   animation: transitionIn 1.5s;
 }
 
-.groupOwner {
+.eventHost {
   animation: wait 2.3s;
 }
 
@@ -56,13 +55,12 @@
 .nav {
   display: flex;
   flex-direction: row;
-  align-items: center;
   position: sticky;
-  height: 50px;
+  height: 2.5em;
   width: auto;
   padding-left: 80px;
   background-color: #101010;
-  top: 50px;
+  top: 0px;
   z-index: 150;
   animation: wait 1.5s;
 }

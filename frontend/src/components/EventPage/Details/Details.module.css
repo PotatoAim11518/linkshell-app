@@ -1,0 +1,27 @@
+.detailsHeader {
+  color: white;
+  position: relative;
+  text-align: left;
+  left: 80px;
+  animation: wait 1.5s;
+}
+
+.detailsText {
+  color: white;
+  max-width: 600px;
+  position: relative;
+  font-weight: 100;
+  text-align: left;
+  left: 80px;
+  animation: wait 2s;
+}
+
+@keyframes wait {
+  from {
+    opacity: 0.0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1.0;
+  }
+}
