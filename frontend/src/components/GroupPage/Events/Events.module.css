@@ -1,8 +1,7 @@
 .groupEventsHeader {
   width: 780px;
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
+  justify-content: flex-start;
   animation: wait 1s;
 }
 

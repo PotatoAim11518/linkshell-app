@@ -5,11 +5,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { joinUserGroup, leaveUserGroup, getUserGroups } from "../../store/userGroups";
 import styles from "./GroupJoinLeaveButton.module.css";
 
-export default function JoinLeaveButton({ group }) {
+export default function JoinLeaveButton({ group, isMember, setIsMember}) {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const [isMember, setIsMember] = useState(false);
+  // const [isMember, setIsMember] = useState(false);
 
   const user = useSelector((state) => state.session.user);
   const userGroups = useSelector((state) => Object.values(state.userGroups));
@@ -22,7 +22,7 @@ export default function JoinLeaveButton({ group }) {
       }
       setIsMember(false)
     });
-  }, [dispatch, userGroups, group?.id, user?.id]);
+  }, [dispatch, userGroups, group?.id, user?.id, setIsMember]);
 
   const join = (e) => {
     e.preventDefault();

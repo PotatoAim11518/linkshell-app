@@ -1,7 +1,7 @@
 // frontend/src/components/GroupPage/index.js
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams, Link, NavLink, Switch, Route } from "react-router-dom";
+import { useParams, Link, NavLink, Switch, Route, useHistory } from "react-router-dom";
 import { Helmet } from 'react-helmet';
 
 import { getGroups, updateGroup, getGroup } from '../../store/groups';
@@ -23,6 +23,10 @@ import styles from './GroupPage.module.css';
 const GroupPage = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
+
+  const history = useHistory();
+
+  const [isMember, setIsMember] = useState(false);
 
   const groups = useSelector((state) => state?.groups);
   const types = useSelector((state) => state.types);
@@ -73,7 +77,7 @@ const GroupPage = () => {
               </NavLink>
             </>
           )}
-          <GroupJoinLeaveButton group={group}/>
+          <GroupJoinLeaveButton group={group} isMember={isMember} setIsMember={setIsMember}/>
           <div className={styles.groupType}>
             {group?.Type?.name}
           </div>
@@ -84,8 +88,7 @@ const GroupPage = () => {
               <About group={group}/>
             </Route>
             <Route path={`/groups/${id}/events`}>
-              <CreateEventForm group={group}/>
-              <GroupEventsList group={group}/>
+              <GroupEventsList group={group} isMember={isMember}/>
             </Route>
             <Route path={`/groups/${id}/members`}>
               <Members group={group}/>
