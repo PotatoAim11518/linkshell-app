@@ -15,12 +15,12 @@ export default function JoinLeaveButton({ group }) {
   const userGroups = useSelector((state) => Object.values(state.userGroups));
 
   useEffect(() => {
-    // dispatch(getUserGroups(user?.id))
     userGroups.forEach((userGroup) => {
       if (userGroup?.groupId === group?.id && userGroup?.userId === user?.id) {
         setIsMember(true)
         return
       }
+      setIsMember(false)
     });
   }, [dispatch, userGroups, group?.id, user?.id]);
 
@@ -29,26 +29,25 @@ export default function JoinLeaveButton({ group }) {
     if (!user) {
       history.push("/login");
     }
-    dispatch(joinUserGroup(user?.id, group?.id));
-    window.alert("JOINED");
+    dispatch(joinUserGroup(user?.id, group?.id))
   };
 
   const leave = (e) => {
     e.preventDefault();
 
-    // dispatch(leaveUserGroup(group?.id, user?.id));
+    dispatch(leaveUserGroup(user?.id, group?.id))
   };
 
 
   return (
     <>
       {isMember && (
-        <button className={`${styles.button} ${styles.update}`} onClick={leave}>
+        <button className={`${styles.button} ${styles.leave}`} onClick={leave}>
           Leave
         </button>
       )}
       {!isMember && (
-        <button className={`${styles.button} ${styles.update}`} onClick={join}>
+        <button className={`${styles.button} ${styles.join}`} onClick={join}>
           Join
         </button>
       )}

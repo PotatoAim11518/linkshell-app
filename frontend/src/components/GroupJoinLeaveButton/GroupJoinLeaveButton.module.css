@@ -1,0 +1,40 @@
+.button {
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 12px;
+  padding: 8px 0px;
+  width: 80px;
+  border-color: transparent;
+  border-radius: 5px;
+  animation: transitionIn 1.5s;
+  color: white;
+}
+
+.button:hover {
+  transition: color 0.3s, background-color 0.3s;
+}
+
+.join {
+  background-color: #ff2d2d83;
+}
+.join:hover {
+  color: white;
+  background-color: #ff2d2d;
+}
+
+.leave {
+  background-color: #22222283;
+}
+.leave:hover {
+  color: white;
+  background-color: #222222;
+}
+
+@keyframes transitionIn {
+  from {
+    opacity: 0.0;
+  }
+  to {
+    opacity: 1.0;
+  }
+}
