@@ -1,0 +1,89 @@
+.link {
+  text-decoration: none;
+}
+
+.groupCard {
+  display: flex;
+  padding-right: 80px;
+  max-width: 250px;
+  height: auto;
+  animation: transitionIn 1s;
+  /* border: 1px solid black; */
+}
+
+.image {
+  z-index: 50;
+  min-width: 130px;
+  height: 100px;
+  margin-bottom: 20px;
+  color: white;
+  background-color: black;
+  border-radius: 8px;
+}
+
+.groupInfo {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  min-width: 250px;
+  max-width: 250px;
+  left: 30px;
+  margin-right: 20px;
+  margin-top: 10px;
+  padding: 10px;
+  padding-left: 40px;
+  opacity: 0.9;
+  box-shadow: -2px 2px 6px 1px #111;
+  color: white;
+  background-color: #1e1f23;
+  border-radius: 8px;
+}
+
+.groupTitle {
+  font-weight: 200;
+}
+
+.divider {
+  background-color: red;
+  width: 3px;
+  height: 90px;
+  position: relative;
+  left: 300px;
+  top: -130px;
+  animation: wait 2s ease-in;
+}
+
+.typeName {
+  color: white;
+  text-align: end;
+  margin-top: 0;
+}
+
+.about {
+
+}
+
+.owner {
+
+}
+
+@keyframes transitionIn {
+  from {
+      opacity: 0.0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1.0;
+  }
+}
+
+@keyframes wait {
+  from {
+    transform: translateY(300px);
+    height: 300px;
+  }
+  to {
+    transform: translateY(0px);
+    /* width: 200px; */
+  }
+}

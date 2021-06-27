@@ -2,17 +2,21 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, Link, NavLink, Switch, Route } from "react-router-dom";
+import { Helmet } from 'react-helmet';
+
 import { getGroups, updateGroup, getGroup } from '../../store/groups';
 import { getGroupEvents } from '../../store/events';
 import { getTypes } from '../../store/types';
 import { getLocations } from '../../store/locations';
-import styles from './GroupPage.module.css';
+
 import About from "./About";
 import GroupEventsList from "./Events";
 import Members from "./Members";
 import EditGroupForm from './EditGroup';
 import DeleteGroup from './DeleteGroup';
 import CreateEventForm from '../EventCreationForm';
+
+import styles from './GroupPage.module.css';
 
 const GroupPage = () => {
   const { id } = useParams();
@@ -27,12 +31,15 @@ const GroupPage = () => {
   useEffect(() => {
     dispatch(getGroups())
     dispatch(getTypes())
-    // dispatch(getGroupEvents(group?.id))
-  },[dispatch])
+    dispatch(getGroupEvents(group?.id))
+  },[dispatch, group?.id])
 
 
   return (
     <>
+      <Helmet>
+        <title>{`Linkshell | ${group?.name}`}</title>
+      </Helmet>
       <div className={styles.pageContainer}>
         <h2 className={styles.groupName}>{group?.name}</h2>
         <div className={styles.divider}></div>

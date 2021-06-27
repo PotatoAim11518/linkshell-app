@@ -30,17 +30,19 @@ const Navigation = ({ isLoaded }) => {
 
 
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.homeBtn}>
-        <NavLink exact to='/' className={styles.navlink} activeClassName={styles.navlink__active}>Home</NavLink>
+    <>
+      <div className={styles.wrapper}>
+        <div className={styles.homeBtn}>
+          <NavLink exact to='/' className={styles.navlink} activeClassName={styles.navlink__active}>Home</NavLink>
+        </div>
+        <div className={styles.createGroupButton}>
+          <CreateGroupButton />
+        </div>
+        <div className={styles.sessionLinks}>
+          {isLoaded && sessionLinks}
+        </div>
       </div>
-      <div className={styles.createGroupButton}>
-        <CreateGroupButton />
-      </div>
-      <div className={styles.sessionLinks}>
-        {isLoaded && sessionLinks}
-      </div>
-    </div>
+    </>
   )
 }
 

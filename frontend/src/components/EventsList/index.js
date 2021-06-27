@@ -19,7 +19,7 @@ const EventsList = () => {
   return (
     <div className={styles.eventsList}>
       <div className={styles.header}></div>
-      {events.map((event) => <EventCard key={event.id} event={event}/>)}
+      {events.map((event) => <EventCard key={event?.id} event={event}/>)}
     </div>
   )
 }
