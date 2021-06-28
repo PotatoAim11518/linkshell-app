@@ -1,7 +1,8 @@
 // frontend/src/components/GroupCard/index.js
-import React from "react";
+import React, {useState} from "react";
 import styles from './EventCard.module.css';
 import { Link } from "react-router-dom";
+import RSVPButton from "../RSVPButton";
 
 const EventCard = ({event}) => {
   const { id, name, date, capacity, host, location, group } = event;
@@ -10,6 +11,8 @@ const EventCard = ({event}) => {
   const timeOptions = { timeStyle: 'short'}
   const dateString = dateObj.toLocaleDateString("en-US", dateOptions);
   const timeString = dateObj.toLocaleTimeString("en-US", timeOptions);
+
+  // const [isRSVPed, setIsRSVPed] = useState();
 
   return (
     <Link className={styles.link} to={`/events/${id}`}>
@@ -33,7 +36,7 @@ const EventCard = ({event}) => {
           <div className={styles.bottomRow}>
             <p className={styles.location}>{location?.name}</p>
             <p className={styles.capacity}>{capacity} attendees</p>
-            <button>Attend</button>
+            {/* <RSVPButton event={event} isRSVPed={isRSVPed} setIsRSVPed={setIsRSVPed}/> */}
           </div>
         </div>
       </div>

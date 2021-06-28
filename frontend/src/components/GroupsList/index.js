@@ -11,6 +11,7 @@ const GroupsList = () => {
   const groups = useSelector((state) => Object.values(state.groups));
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     dispatch(getGroups());
     dispatch(getTypes());
   }, [dispatch]);

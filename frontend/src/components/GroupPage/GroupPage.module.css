@@ -32,7 +32,7 @@
 
 .pageContainer {
   display: block;
-  padding-right: 300px;
+  /* padding-right: 300px; */
   /* border: 1px solid black; */
 }
 
@@ -46,11 +46,22 @@
   animation: divider 1.5s ease-in;
 }
 
+.imageWrapper {
+  z-index: 1;
+  width: 100%;
+  height: auto;
+  margin-top: 20px;
+  display: inline-block;
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 50%,#27282c 95%);
+}
+
 .image {
-  background-color: black;
-  width: 100vw;
-  height: 45vh;
-  animation: transitionIn 1s;
+  position: relative;
+  z-index: -1;
+  width: 100%;
+  bottom: 20px;
+  height: auto;
+  animation: fadeIn 2s;
 }
 
 .nav {
@@ -113,6 +124,16 @@
   from {
       opacity: 0.0;
       transform: translateX(10px);
+    }
+    to {
+      opacity: 1.0;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+      opacity: 0.0;
+      transform: scale(1.05)
     }
     to {
       opacity: 1.0;

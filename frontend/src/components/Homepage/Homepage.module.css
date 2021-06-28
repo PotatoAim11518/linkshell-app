@@ -1,3 +1,31 @@
+.gradientWrapper {
+  z-index: 1;
+  width: 100%;
+  height: auto;
+  margin-top: 20px;
+  display: inline-block;
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 50%,#27282c 95%);
+}
+
+.welcomeImage {
+  position: relative;
+  z-index: -1;
+  width: 100%;
+  bottom: 20px;
+  height: auto;
+  animation: fadeIn 2s;
+}
+
+.welcomeContainer {
+  padding-bottom: 40px;
+}
+
+.welcomeTitle,
+.welcomeText {
+  color: white;
+  text-align: center;
+}
+
 .loggedOutPage {
   display: flex;
   flex-direction: row;
@@ -41,7 +69,7 @@
 }
 
 .yourNextEvent {
-  padding-right: 40px;
+  padding: 0 40px;
 }
 
 .explore {
@@ -54,6 +82,18 @@
 .explore > h4 {
   font-weight: 200;
   color: white;
+}
+
+.discover {
+  display: flex;
+  flex-direction: column;
+}
+
+.discoverImage {
+  width: 285px;
+  height: auto;
+  margin-top: 20px;
+  border-radius: 8px;
 }
 
 .button {
@@ -80,10 +120,37 @@
   box-shadow: -1px -1px 2px 1px rgb(10, 10, 10);
 }
 
+.joinGroupsImage {
+  width: 80%;
+  margin-top: 20px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 0 8px 8px white inset;
+}
+
+@keyframes gradientIn {
+  from {
+      opacity: 0.0;
+    }
+    to {
+      opacity: 1.0;
+  }
+}
+
 @keyframes transitionIn {
   from {
       opacity: 0.0;
-      transform: translateX(-10px);
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1.0;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+      opacity: 0.0;
+      transform: scale(1.05)
     }
     to {
       opacity: 1.0;

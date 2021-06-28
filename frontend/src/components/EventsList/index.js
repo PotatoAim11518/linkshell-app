@@ -12,6 +12,7 @@ const EventsList = () => {
   const events = useSelector((state) => Object.values(state.events));
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     dispatch(getEvents());
     dispatch(getLocations());
   }, [dispatch]);
