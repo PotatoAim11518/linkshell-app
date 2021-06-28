@@ -1,14 +1,17 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 
 import { getEvent } from "../../../store/events";
 import styles from "./RSVPInfo.module.css";
+import RSVPButton from "../../RSVPButton";
 
 const RSVPInfo = () => {
   const { eventId } = useParams();
-
   const dispatch = useDispatch();
+
+  const [isRSVPed, setIsRSVPed] = useState();
+
   const events = useSelector((state) => state.events);
   const event = events[eventId];
 
@@ -36,7 +39,7 @@ const RSVPInfo = () => {
         <div className={styles.time}>
           <i className="far fa-clock"></i> <span> {timeString}</span>
         </div>
-        <button>Attend</button>
+        <RSVPButton event={event} isRSVPed={isRSVPed} setIsRSVPed={setIsRSVPed}/>
       </div>
       <div className={styles.divider}></div>
     </>

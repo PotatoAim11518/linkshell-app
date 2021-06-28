@@ -14,15 +14,13 @@ import EditEvent from "./EditEvent";
 import DeleteEvent from "./DeleteEvent";
 import EventGroupCard from "./Group";
 import RSVPInfo from "./RSVPInfo";
-import RSVPButton from "../RSVPButton";
+
 
 import styles from "./EventPage.module.css";
 
 const EventPage = () => {
   const { eventId } = useParams();
   const dispatch = useDispatch();
-
-  const [isRSVPed, setIsRSVPed] = useState(false);
 
   const user = useSelector((state) => state.session.user);
   const events = useSelector((state) => state.events);
@@ -37,7 +35,7 @@ const EventPage = () => {
     dispatch(getGroup(group?.id));
     dispatch(getGroupEvents(group?.id));
     dispatch(getRSVPs(user?.id))
-  }, [dispatch, eventId, group?.id, user?.id, isRSVPed]);
+  }, [dispatch, eventId, group?.id, user?.id]);
 
   return (
     <>
@@ -88,7 +86,6 @@ const EventPage = () => {
                 </NavLink>
               </>
             )}
-            <RSVPButton event={event} isRSVPed={isRSVPed} setIsRSVPed={setIsRSVPed}/>
           </nav>
           <div className={styles.belowNav}>
             <div className={styles.info}>
