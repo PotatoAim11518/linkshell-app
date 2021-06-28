@@ -7,6 +7,7 @@ const JoinGroups = () => {
 
   return (
     <div className={`${styles.explore} ${styles.buttonContainer}`}>
+      <img className={styles.joinGroupsImage} src='assets/grand-company-banners.jpg' alt='join groups'/>
       <h4>Join more groups to see more events.</h4>
       <Link className={styles.button} to='/discover/groups'>Join more groups</Link>
     </div>

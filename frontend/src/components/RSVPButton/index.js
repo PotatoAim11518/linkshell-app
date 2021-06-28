@@ -29,13 +29,13 @@ export default function RSVPButton({ event, isRSVPed, setIsRSVPed }) {
   };
 
   useEffect(() => {
+    setIsRSVPed(false);
     RSVPs.forEach((RSVP) => {
       if (RSVP?.eventId === event?.id && RSVP?.userId === user?.id) {
-        setIsRSVPed(true);
-        return
+        return setIsRSVPed(true);
       }
       setIsRSVPed(false);
-    });
+    })
     return
   }, [dispatch, RSVPs, event?.id, user?.id, setIsRSVPed]);
 

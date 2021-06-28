@@ -9,8 +9,6 @@ export default function JoinLeaveButton({ group, isMember, setIsMember}) {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  // const [isMember, setIsMember] = useState(false);
-
   const user = useSelector((state) => state.session.user);
   const userGroups = useSelector((state) => Object.values(state.userGroups));
 

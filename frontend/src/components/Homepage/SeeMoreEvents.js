@@ -7,6 +7,7 @@ const SeeMoreEvents = () => {
 
   return (
     <div className={`${styles.explore} ${styles.buttonContainer}`}>
+      <img className={styles.joinGroupsImage} src='assets/starting-soon.jpg' alt='join groups'/>
       <h4>See more events starting soon</h4>
       <Link className={styles.button} to="/discover/events">See More</Link>
     </div>
