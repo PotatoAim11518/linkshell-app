@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import * as sessionActions from '../../store/session';
 import styles from './Navigation.module.css'
 
@@ -38,8 +38,8 @@ const ProfileButton = ({user}) => {
 
   return (
     <>
-      <button className={styles.profileButton, 'profile-btn'} onClick={openMenu}><i className="fas fa-ghost" style={{color: 'blue'}}/>
-      </button>
+      <Link className={styles.profileButton} onClick={openMenu}>
+        <img className={styles.profileImage} src='/assets/jobclasses/BLM.png' alt='profile icon'/></Link>
       {showMenu && (
         <ul className={styles.dropdownItems}>
           <li className={styles.li}>{username}</li>
