@@ -1,10 +1,9 @@
-// backend/routes/api/groups.js
+// backend/routes/api/usergroups.js
 const router = require("express").Router();
 const asyncHandler = require("express-async-handler");
 
 const { requireAuth } = require("../../utils/auth");
 const { Group, User, UserGroup } = require("../../db/models");
-const { handleValidationErrors } = require("../../utils/validation");
 
 /////// UserGroup routes
 

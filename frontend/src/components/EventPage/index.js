@@ -1,19 +1,22 @@
 // frontend/src/components/EventPage/index.js
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, NavLink, Switch, Route } from "react-router-dom";
 
 import { getEvent, getGroupEvents } from "../../store/events";
 import { getGroup } from "../../store/groups";
+import { getRSVPs } from "../../store/rsvps";
 
-import styles from "./EventPage.module.css";
 import Details from "./Details";
 import Attendees from "./Attendees";
 import EditEvent from "./EditEvent";
 import DeleteEvent from "./DeleteEvent";
 import EventGroupCard from "./Group";
 import RSVPInfo from "./RSVPInfo";
+
+
+import styles from "./EventPage.module.css";
 
 const EventPage = () => {
   const { eventId } = useParams();
@@ -31,8 +34,8 @@ const EventPage = () => {
     dispatch(getEvent(eventId));
     dispatch(getGroup(group?.id));
     dispatch(getGroupEvents(group?.id));
-    // dispatch(getTypes())
-  }, [dispatch, eventId, group?.id]);
+    dispatch(getRSVPs(user?.id))
+  }, [dispatch, eventId, group?.id, user?.id]);
 
   return (
     <>

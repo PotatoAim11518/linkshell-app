@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { Link, Route, Switch, useHistory } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import { joinUserGroup, leaveUserGroup, getUserGroups } from "../../store/userGroups";
+import { joinUserGroup, leaveUserGroup } from "../../store/userGroups";
 import styles from "./GroupJoinLeaveButton.module.css";
 
 export default function JoinLeaveButton({ group, isMember, setIsMember}) {
@@ -22,6 +22,7 @@ export default function JoinLeaveButton({ group, isMember, setIsMember}) {
       }
       setIsMember(false)
     });
+    return
   }, [dispatch, userGroups, group?.id, user?.id, setIsMember]);
 
   const join = (e) => {
@@ -34,7 +35,9 @@ export default function JoinLeaveButton({ group, isMember, setIsMember}) {
 
   const leave = (e) => {
     e.preventDefault();
-
+    if (!user) {
+      history.push("/login");
+    }
     dispatch(leaveUserGroup(user?.id, group?.id))
   };
 

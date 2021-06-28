@@ -14,6 +14,7 @@ const typesRouter = require("./types");
 const eventsRouter = require("./events");
 const locationsRouter = require("./locations");
 const userGroupsRouter = require("./usergroups");
+const RSVPsRouter = require("./rsvps");
 
 router.use("/session", sessionRouter);
 router.use("/users", usersRouter);
@@ -22,6 +23,7 @@ router.use("/types", typesRouter);
 router.use("/events", eventsRouter);
 router.use("/locations", locationsRouter);
 router.use("/usergroups", userGroupsRouter);
+router.use("/rsvps", RSVPsRouter);
 
 // -----TEST ROUTES FOR MIDDLEWARE-----
 // // GET /api/set-token-cookie
