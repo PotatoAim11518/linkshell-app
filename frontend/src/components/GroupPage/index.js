@@ -49,8 +49,8 @@ const GroupPage = () => {
         <h2 className={styles.groupName}>{group?.name}</h2>
         <div className={styles.divider}></div>
         <h3 className={styles.groupOwner}><em>Organized by </em> {group?.User?.username}</h3>
-        <div className={styles.image}>
-          <p>Placeholder for Image</p>
+        <div className={styles.imageWrapper}>
+          <img className={styles.image} src={`/assets/group-placeholders/${group?.typeId}.jpg`} alt='splash'/>
         </div>
       </div>
       <div className={styles.groupContent}>

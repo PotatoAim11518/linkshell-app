@@ -13,7 +13,7 @@ const GroupDiscovery = ({ isLoaded }) => {
       <h1 className={styles.sectionTitle}>Scheduled events from your groups</h1>
         <div className={styles.section}>
           <div className={styles.image}>
-            <p>--Placeholder for events from your group--</p>
+            <p>--Placeholder for events from your groups--</p>
           </div>
           <JoinGroups />
         </div>
