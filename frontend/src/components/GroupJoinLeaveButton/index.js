@@ -22,6 +22,7 @@ export default function JoinLeaveButton({ group, isMember, setIsMember}) {
       }
       setIsMember(false)
     });
+    return
   }, [dispatch, userGroups, group?.id, user?.id, setIsMember]);
 
   const join = (e) => {
