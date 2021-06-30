@@ -36,6 +36,16 @@ module.exports = (sequelize, DataTypes) => {
         len: [60, 60]
       },
     },
+    isAdmin: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      default: false
+    },
+    isDemo: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      default: false
+    },
   },
   {
     defaultScope: {

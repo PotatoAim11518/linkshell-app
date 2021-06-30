@@ -17,8 +17,6 @@ const DemoUserLogin = () => {
       randomEmail,
       randomPassword
     }
-
-
     signup(newDemoUser)
   }
 
